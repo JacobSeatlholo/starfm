@@ -1036,6 +1036,37 @@
     .impact-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
+  /* LANGUAGE SWITCHER */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 3px;
+  }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    border-radius: 100px;
+    padding: 6px 12px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .lang-btn.active {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .lang-btn:hover:not(.active) { color: var(--white); }
+
   /* SCROLL ANIMATIONS */
   .reveal {
     opacity: 0;
@@ -1078,12 +1109,17 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#shows">Shows</a></li>
-    <li><a href="#digital">Digital Literacy</a></li>
-    <li><a href="#community">Community</a></li>
-    <li><a href="#funders">Partners</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#shows" data-i18n="nav_shows">Shows</a></li>
+    <li><a href="#digital" data-i18n="nav_digital">Digital Literacy</a></li>
+    <li><a href="#community" data-i18n="nav_community">Community</a></li>
+    <li><a href="#funders" data-i18n="nav_partners">Partners</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('tn')">Setswana</button>
+    <button class="lang-btn" onclick="setLang('st')">Sesotho</button>
+  </div>
   <a href="https://famcast.co.za/q/stations/star-fm/" target="_blank" class="nav-live">
     <div class="live-dot"></div>
     Live Now
@@ -1104,25 +1140,25 @@
 
   <div class="hero-badge">
     <div class="live-dot"></div>
-    Broadcasting 24/7 — Klerksdorp & North West Province
+    <span data-i18n="hero_badge">Broadcasting 24/7 — Klerksdorp & North West Province</span>
   </div>
 
   <h1>
-    Community Radio<br>
-    <em>Reimagined.</em>
+    <span data-i18n="hero_h1_line1">Community Radio</span><br>
+    <em data-i18n="hero_h1_line2">Reimagined.</em>
   </h1>
 
-  <p class="hero-sub">
+  <p class="hero-sub" data-i18n="hero_sub">
     Star FM 102.9 is more than a radio station — it's a movement. We broadcast empowerment, digital literacy, and African excellence into every home in Klerksdorp, the City of Matlosana, and across the Southern District of North West Province.
   </p>
 
   <div class="hero-actions">
     <a href="https://famcast.co.za/q/stations/star-fm/" target="_blank" class="btn-primary">
       <div class="live-dot"></div>
-      Tune In Live
+      <span data-i18n="btn_tune_in">Tune In Live</span>
     </a>
     <a href="#community" class="btn-ghost">
-      Our Mission →
+      <span data-i18n="btn_mission">Our Mission →</span>
     </a>
   </div>
 
@@ -1170,33 +1206,33 @@
 
 <!-- IMPACT NUMBERS -->
 <section id="impact">
-  <div class="section-label">Why Star FM Matters</div>
-  <h2 class="section-title">Reach. Impact. Change.</h2>
-  <p class="section-body">Community radio is one of the most powerful tools for social change in South Africa. Star FM 102.9 turns every broadcast into a bridge between people and possibility across the Southern District.</p>
+  <div class="section-label" data-i18n="impact_label">Why Star FM Matters</div>
+  <h2 class="section-title" data-i18n="impact_title">Reach. Impact. Change.</h2>
+  <p class="section-body" data-i18n="impact_body">Community radio is one of the most powerful tools for social change in South Africa. Star FM 102.9 turns every broadcast into a bridge between people and possibility across the Southern District.</p>
   <div class="impact-grid reveal">
     <div class="impact-item">
       <div class="impact-num">11K+</div>
-      <div class="impact-label">Facebook community followers — and growing every day</div>
+      <div class="impact-label" data-i18n="impact_1">Facebook community followers — and growing every day</div>
     </div>
     <div class="impact-item">
       <div class="impact-num">102.9</div>
-      <div class="impact-label">MHz — your frequency across Klerksdorp & the City of Matlosana</div>
+      <div class="impact-label" data-i18n="impact_2">MHz — your frequency across Klerksdorp & the City of Matlosana</div>
     </div>
     <div class="impact-item">
       <div class="impact-num">24/7</div>
-      <div class="impact-label">Live broadcasting, every hour of every day, no pauses</div>
+      <div class="impact-label" data-i18n="impact_3">Live broadcasting, every hour of every day, no pauses</div>
     </div>
     <div class="impact-item">
       <div class="impact-num">65km</div>
-      <div class="impact-label">From Johannesburg — the heartbeat of the Southern District, North West</div>
+      <div class="impact-label" data-i18n="impact_4">From Johannesburg — the heartbeat of the Southern District, North West</div>
     </div>
   </div>
 </section>
 
 <!-- SHOWS -->
 <section id="shows">
-  <div class="section-label">Programming</div>
-  <h2 class="section-title">Shows That<br>Move People</h2>
+  <div class="section-label" data-i18n="shows_label">Programming</div>
+  <h2 class="section-title"><span data-i18n="shows_title">Shows That<br>Move People</span></h2>
   <div class="shows-layout">
     <div class="shows-list">
       <div class="show-row active">
@@ -1333,9 +1369,9 @@
 
 <!-- COMMUNITY -->
 <section id="community">
-  <div class="section-label">The Mission</div>
-  <h2 class="section-title reveal">Built For The<br>Community.</h2>
-  <p class="section-body reveal">Star FM 102.9 is not a corporate station. We are owned by, built for, and powered by the community of Klerksdorp and the Southern District of North West. Every broadcast is an act of empowerment.</p>
+  <div class="section-label" data-i18n="community_label">The Mission</div>
+  <h2 class="section-title reveal" data-i18n="community_title">Built For The<br>Community.</h2>
+  <p class="section-body reveal" data-i18n="community_body">Star FM 102.9 is not a corporate station. We are owned by, built for, and powered by the community of Klerksdorp and the Southern District of North West. Every broadcast is an act of empowerment.</p>
   <div class="community-grid" style="margin-top: 60px;">
     <div class="community-card reveal">
       <span class="card-emoji">🏘️</span>
@@ -1373,12 +1409,12 @@
 <!-- FUNDERS -->
 <section id="funders">
   <div class="funder-card reveal">
-    <div class="funder-eyebrow">// For Funders & Partners</div>
-    <h2 class="funder-title">Invest in the Voice<br>of the Community.</h2>
-    <p class="funder-body">Community radio reaches the people that mainstream media ignores. Star FM 102.9 is building new infrastructure for community empowerment in Klerksdorp and North West Province — and we're looking for forward-thinking funders who want to make a measurable social impact.</p>
+    <div class="funder-eyebrow" data-i18n="funder_eyebrow">// For Funders & Partners</div>
+    <h2 class="funder-title" data-i18n="funder_title">Invest in the Voice<br>of the Community.</h2>
+    <p class="funder-body" data-i18n="funder_body">Community radio reaches the people that mainstream media ignores. Star FM 102.9 is building new infrastructure for community empowerment in Klerksdorp and North West Province — and we're looking for forward-thinking funders who want to make a measurable social impact.</p>
     <div class="funder-actions">
-      <a href="#contact" class="btn-primary">Request an Investment Brief</a>
-      <a href="#contact" class="btn-ghost">Become a Sponsor</a>
+      <a href="#contact" class="btn-primary"><span data-i18n="funder_btn1">Request an Investment Brief</span></a>
+      <a href="#contact" class="btn-ghost"><span data-i18n="funder_btn2">Become a Sponsor</span></a>
     </div>
     <div class="funder-logos">
       <div class="funder-logo-item highlight">ICASA Licensed</div>
@@ -1394,30 +1430,30 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">Get Involved</div>
+  <div class="section-label" data-i18n="contact_label">Get Involved</div>
   <div class="contact-layout">
     <div>
-      <h2 class="section-title reveal">Let's Build<br>Together.</h2>
-      <p class="section-body reveal">Whether you're a listener in Klerksdorp, a local business, a community organisation, or a funder — there's a place for you in the Star FM 102.9 ecosystem.</p>
+      <h2 class="section-title reveal" data-i18n="contact_title">Let's Build<br>Together.</h2>
+      <p class="section-body reveal" data-i18n="contact_body">Whether you're a listener in Klerksdorp, a local business, a community organisation, or a funder — there's a place for you in the Star FM 102.9 ecosystem.</p>
       <div style="margin-top: 48px; display: flex; flex-direction: column; gap: 24px;">
         <div class="reveal reveal-delay-1" style="display: flex; gap: 16px; align-items: flex-start;">
           <div style="width: 40px; height: 40px; background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem;">📍</div>
           <div>
-            <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;">Location</div>
+            <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;" data-i18n="contact_loc_label">Location</div>
             <div style="color: var(--muted); font-size: 0.85rem;">Klerksdorp, North West Province, South Africa</div>
           </div>
         </div>
         <div class="reveal reveal-delay-2" style="display: flex; gap: 16px; align-items: flex-start;">
           <div style="width: 40px; height: 40px; background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem;">📻</div>
           <div>
-            <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;">Live Stream</div>
+            <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;" data-i18n="contact_stream_label">Live Stream</div>
             <div style="color: var(--muted); font-size: 0.85rem;">famcast.co.za/q/stations/star-fm/</div>
           </div>
         </div>
         <div class="reveal reveal-delay-3" style="display: flex; gap: 16px; align-items: flex-start;">
           <div style="width: 40px; height: 40px; background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem;">✉️</div>
           <div>
-            <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;">Email</div>
+            <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;" data-i18n="contact_email_label">Email</div>
             <div style="color: var(--muted); font-size: 0.85rem;">hello@starfmradio.co.za</div>
           </div>
         </div>
@@ -1426,12 +1462,12 @@
     <div class="reveal reveal-delay-1">
       <div class="contact-form" id="contactForm">
         <div class="form-group">
-          <label class="form-label">Full Name</label>
-          <input type="text" class="form-input" placeholder="Your name">
+          <label class="form-label" data-i18n="form_name">Full Name</label>
+          <input type="text" class="form-input" data-i18n-placeholder="form_name_ph" placeholder="Your name">
         </div>
         <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <input type="email" class="form-input" placeholder="you@example.com">
+          <label class="form-label" data-i18n="form_email">Email Address</label>
+          <input type="email" class="form-input" data-i18n-placeholder="form_email_ph" placeholder="you@example.com">
         </div>
         <div class="form-group">
           <label class="form-label">I am reaching out as a</label>
@@ -1600,6 +1636,163 @@
   }, { threshold: 0.3 });
   const impactSection = document.getElementById('impact');
   if (impactSection) impactObserver.observe(impactSection);
+
+  // ─── TRANSLATION SYSTEM ───────────────────────────────────────────
+  const translations = {
+    en: {
+      nav_shows: 'Shows',
+      nav_digital: 'Digital Literacy',
+      nav_community: 'Community',
+      nav_partners: 'Partners',
+      nav_contact: 'Contact',
+      hero_badge: 'Broadcasting 24/7 — Klerksdorp & North West Province',
+      hero_h1_line1: 'Community Radio',
+      hero_h1_line2: 'Reimagined.',
+      hero_sub: "Star FM 102.9 is more than a radio station — it's a movement. We broadcast empowerment, digital literacy, and African excellence into every home in Klerksdorp, the City of Matlosana, and across the Southern District of North West Province.",
+      btn_tune_in: 'Tune In Live',
+      btn_mission: 'Our Mission →',
+      impact_label: 'Why Star FM Matters',
+      impact_title: 'Reach. Impact. Change.',
+      impact_body: 'Community radio is one of the most powerful tools for social change in South Africa. Star FM 102.9 turns every broadcast into a bridge between people and possibility across the Southern District.',
+      impact_1: 'Facebook community followers — and growing every day',
+      impact_2: 'MHz — your frequency across Klerksdorp & the City of Matlosana',
+      impact_3: 'Live broadcasting, every hour of every day, no pauses',
+      impact_4: 'From Johannesburg — the heartbeat of the Southern District, North West',
+      shows_label: 'Programming',
+      shows_title: 'Shows That<br>Move People',
+      community_label: 'The Mission',
+      community_title: 'Built For The<br>Community.',
+      community_body: 'Star FM 102.9 is not a corporate station. We are owned by, built for, and powered by the community of Klerksdorp and the Southern District of North West. Every broadcast is an act of empowerment.',
+      funder_eyebrow: '// For Funders & Partners',
+      funder_title: 'Invest in the Voice<br>of the Community.',
+      funder_body: "Community radio reaches the people that mainstream media ignores. Star FM 102.9 is building new infrastructure for community empowerment in Klerksdorp and North West Province — and we're looking for forward-thinking funders who want to make a measurable social impact.",
+      funder_btn1: 'Request an Investment Brief',
+      funder_btn2: 'Become a Sponsor',
+      contact_label: 'Get Involved',
+      contact_title: "Let's Build<br>Together.",
+      contact_body: "Whether you're a listener in Klerksdorp, a local business, a community organisation, or a funder — there's a place for you in the Star FM 102.9 ecosystem.",
+      contact_loc_label: 'Location',
+      contact_stream_label: 'Live Stream',
+      contact_email_label: 'Email',
+      form_name: 'Full Name',
+      form_name_ph: 'Your name',
+      form_email: 'Email Address',
+      form_email_ph: 'you@example.com',
+    },
+
+    tn: { // Setswana
+      nav_shows: 'Mephato ya Kgaso',
+      nav_digital: 'Thuto ya Dijithale',
+      nav_community: 'Setšhaba',
+      nav_partners: 'Balekane',
+      nav_contact: 'Ikopanye le Rona',
+      hero_badge: 'Re a kgasa 24/7 — Klerksdorp le Bokone Bophirima',
+      hero_h1_line1: 'Redio ya Setšhaba',
+      hero_h1_line2: 'E Ntshwafaditšwe.',
+      hero_sub: 'Star FM 102.9 ga se steixene ya redio fela — ke thulaganyo. Re kgasa maatla, thuto ya dijithale, le tlhogo ya Aforika go ya gae le gae kwa Klerksdorp le Selegae sa Bokone Bophirima.',
+      btn_tune_in: 'Reetsa Jaanong',
+      btn_mission: 'Maikaelelo a Rona →',
+      impact_label: 'Ke Goreng Star FM e Botlhokwa',
+      impact_title: 'Fitlhelela. Tshwaragano. Phetogo.',
+      impact_body: 'Redio ya setšhaba ke sengwe sa dithutiso tse di nonofileng thata tsa phetogo ya loago mo Aforika Borwa. Star FM 102.9 e fetola kgaso nngwe le nngwe go nna lekwalo le lo golaganyang batho le kgolo kwa Selegaeng sa Bokone.',
+      impact_1: 'Balateledi ba setšhaba sa Facebook — ba oketsega letsatsi le letsatsi',
+      impact_2: 'MHz — maqwaqwa a gago kwa Klerksdorp le Motse wa Matlosana',
+      impact_3: 'Kgaso ya Bophelo — ura nngwe le nngwe ya letsatsi le letsatsi, ga go emelelwe',
+      impact_4: 'Go tswa Johannesburg — pelo ya Selegae sa Bokone, Bokone Bophirima',
+      shows_label: 'Maphata a Kgaso',
+      shows_title: 'Diprogramme tse di<br>Suthisang Batho',
+      community_label: 'Maikaelelo',
+      community_title: 'E Agilwe Mme<br>le Setšhaba.',
+      community_body: 'Star FM 102.9 ga se steixene ya kgwebo. Re bona, re agilwe, re thusiwa ke setšhaba sa Klerksdorp le Selegae sa Bokone sa Bokone Bophirima. Kgaso nngwe le nngwe ke seabe sa maatla.',
+      funder_eyebrow: '// Mo go Baatlametsi le Balekane',
+      funder_title: 'Tshegetsa Lentswe<br>la Setšhaba.',
+      funder_body: 'Redio ya setšhaba e fitlhelela batho ba go lebelewa ke mananeo a magolo. Star FM 102.9 e aga mafaratlhatlha a ntšha a maatla a setšhaba kwa Klerksdorp le Bokone Bophirima — re batlana le baatlametsi ba ba go akanya mo pele ba ba ratang go bona tshwaragano ya loago.',
+      funder_btn1: 'Kopa Tlhagiso ya Matseno',
+      funder_btn2: 'Nna Motshephedi',
+      contact_label: 'Nna le Seabe',
+      contact_title: 'A Re Ageng<br>Mmogo.',
+      contact_body: 'Le fa o le moeteledipele kwa Klerksdorp, kgwebo ya mo lefelong, mokgatlho wa setšhaba, kgotsa moatlametsi — go na le lefelo la gago mo Star FM 102.9.',
+      contact_loc_label: 'Lefelo',
+      contact_stream_label: 'Kgaso ya Inthanete',
+      contact_email_label: 'Emeile',
+      form_name: 'Leina le le Feletseng',
+      form_name_ph: 'Leina la gago',
+      form_email: 'Aterese ya Emeile',
+      form_email_ph: 'wena@mohlala.co.za',
+    },
+
+    st: { // Sesotho
+      nav_shows: 'Maphelo a Redio',
+      nav_digital: 'Thuto ya Dijithale',
+      nav_community: 'Sechaba',
+      nav_partners: 'Balekane',
+      nav_contact: 'Ikopanye le Rona',
+      hero_badge: 'Re a phatlalatsa 24/7 — Klerksdorp le Bokone-Bophirima',
+      hero_h1_line1: 'Redio ya Sechaba',
+      hero_h1_line2: 'E Ntjhafaditsweng.',
+      hero_sub: 'Star FM 102.9 ha se feela seteishene sa redio — ke mokgwa wa bophelo. Re phatlalatsa matla, thuto ya dijithale, le bohlompho ba Afrika lapeng le leng la Klerksdorp le Kgaolo ya Borwa ya Bokone-Bophirima.',
+      btn_tune_in: 'Mamela Jwale',
+      btn_mission: 'Sepheo sa Rona →',
+      impact_label: 'Hobaneng Star FM e Bohlokwa',
+      impact_title: 'Fihla. Amohela. Fetola.',
+      impact_body: 'Redio ya sechaba ke e nngwe ya dithutiso tse matla ka ho fetisisa tsa phetoho ya leago Afrika Borwa. Star FM 102.9 e fetola phatlalatso nngwe le nngwe ho ba borokgo pakeng tsa batho le kgolo kgaolong ya Borwa.',
+      impact_1: 'Balatedi ba sechaba sa Facebook — ba hola letsatsi le letsatsi',
+      impact_2: 'MHz — maatla a hao ho pholletsa le Klerksdorp le Motse wa Matlosana',
+      impact_3: 'Phatlalatso ya Bophelo — hora nngwe le nngwe, letsatsi le letsatsi, ha ho eme',
+      impact_4: 'Ho tswa Johannesburg — pelo ya Kgaolo ya Borwa, Bokone-Bophirima',
+      shows_label: 'Maphelo a Phatlalatso',
+      shows_title: 'Diprogramme tse di<br>Suthisang Batho',
+      community_label: 'Sepheo',
+      community_title: 'E Ahilwe Bakeng<br>sa Sechaba.',
+      community_body: 'Star FM 102.9 ha se seteishene sa kgwebo. Re beilwe, re ahilwe, re thusiwa ke sechaba sa Klerksdorp le Kgaolo ya Borwa ya Bokone-Bophirima. Phatlalatso nngwe le nngwe ke ketso ya matla.',
+      funder_eyebrow: '// Ho Bahlohonolofatsi le Balekane',
+      funder_title: 'Tshehetsa Lentswe<br>la Sechaba.',
+      funder_body: 'Redio ya sechaba e fihla ho batho ba fosehwang ke ditsebi tsa baruni. Star FM 102.9 e aha mafaratlhatlha a matjha a matla a sechaba Klerksdorp le Bokone-Bophirima — re batla bahlohonolofatsi ba nahanang pele ba ratang ho bona tshwaragano ya leago.',
+      funder_btn1: 'Kopa Tlhahisoleseding ya Matseno',
+      funder_btn2: 'Nka Karolo e le Mojalefa',
+      contact_label: 'Nka Karolo',
+      contact_title: 'A Re Aheng<br>Mmong\'a Rona.',
+      contact_body: 'Le hoja o motsamaisi kwa Klerksdorp, kgwebo ya lehae, mokgatlo wa sechaba, kapa mohlohonolofatsi — ho na le sebaka sa hao ho Star FM 102.9.',
+      contact_loc_label: 'Sebaka',
+      contact_stream_label: 'Phatlalatso ya Inthanete',
+      contact_email_label: 'Emeile',
+      form_name: 'Lebitso le Feletseng',
+      form_name_ph: 'Lebitso la hao',
+      form_email: 'Aterese ya Emeile',
+      form_email_ph: 'wena@mohlala.co.za',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+
+    // Update all tagged elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    // Update placeholder attributes
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key] !== undefined) el.setAttribute('placeholder', t[key]);
+    });
+
+    // Update lang buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    const activeBtn = [...document.querySelectorAll('.lang-btn')]
+      .find(b => b.getAttribute('onclick') === `setLang('${lang}')`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Update html lang attr
+    document.documentElement.lang = lang === 'tn' ? 'tn' : lang === 'st' ? 'st' : 'en';
+  }
+  // ─────────────────────────────────────────────────────────────────
 </script>
 
 </body>
