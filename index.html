@@ -17,7 +17,7 @@
     --amber: #27ae36;
     --electric: #7fff7f;
     --white: #f0f7f0;
-    --muted: rgba(200,230,200,0.5);
+    --muted: rgba(180,220,180,0.75);
     --red-live: #ff3b3b;
   }
 
@@ -83,7 +83,7 @@
     transition: all 0.4s;
   }
   nav.scrolled {
-    background: rgba(7,7,7,0.92);
+    background: rgba(5,10,3,0.95);
     backdrop-filter: blur(20px);
     border-bottom-color: var(--border);
   }
@@ -480,8 +480,9 @@
   }
   .section-label::before {
     content: '';
-    width: 24px; height: 1px;
+    width: 32px; height: 2px;
     background: var(--gold);
+    border-radius: 2px;
   }
   .section-title {
     font-family: 'Syne', sans-serif;
@@ -520,7 +521,7 @@
     position: relative;
     transition: background 0.3s;
   }
-  .impact-item:hover { background: #161616; }
+  .impact-item:hover { background: #0d1f0d; }
   .impact-num {
     font-family: 'Syne', sans-serif;
     font-size: clamp(2.5rem, 4vw, 3.8rem);
@@ -586,8 +587,8 @@
     text-transform: uppercase;
     padding: 4px 10px;
     border-radius: 100px;
-    border: 1px solid var(--border);
-    color: var(--muted);
+    border: 1px solid rgba(46,204,64,0.25);
+    color: rgba(180,220,180,0.8);
   }
   .show-feature {
     background: var(--panel);
@@ -628,6 +629,7 @@
     align-items: center;
     gap: 8px;
     color: var(--gold);
+    font-weight: 600;
     font-size: 0.82rem;
     font-weight: 500;
     margin-top: 24px;
@@ -1539,7 +1541,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2025 Star FM 102.9 Community Radio · starfmradio.co.za</div>
+    <div>© 2026 Star FM 102.9 Community Radio · starfmradio.co.za</div>
     <div>Built with 🌍 in Klerksdorp, North West</div>
     <div>Powered by <a href="#">Business Hustle</a></div>
   </div>
@@ -1644,8 +1646,8 @@
       nav_contact: 'Contact',
       hero_badge: 'Broadcasting 24/7 — Klerksdorp & North West Province',
       hero_h1_line1: 'Brighter. Smarter.',
-      hero_h1_line2: 'Community Radio.'
-      hero_sub: "Star FM 102.9 is more than a radio station — it's a movement. <em style="font-style:italic;color:var(--gold)">"For The Brighter Side Of You"</em> — broadcasting empowerment, digital literacy, and African excellence into every home in Klerksdorp, the City of Matlosana, and across the Southern District of North West Province.",
+      hero_h1_line2: 'Community Radio.',
+      hero_sub: "Star FM 102.9 is more than a radio station \u2014 it\'s a movement. \'For The Brighter Side Of You\' \u2014 broadcasting empowerment, digital literacy, and African excellence into every home in Klerksdorp, the City of Matlosana, and across the Southern District of North West Province.",
       btn_tune_in: 'Tune In Live',
       btn_mission: 'Our Mission →',
       impact_label: 'Why Star FM Matters',
