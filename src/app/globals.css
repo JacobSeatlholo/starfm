@@ -1,0 +1,341 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── STAR FM DESIGN SYSTEM ─────────────────────────────────────── */
+/* All design tokens defined in @theme so Tailwind 4 processes them */
+@theme {
+  /* Font families */
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-mono: var(--font-syne-mono), monospace;
+  --font-display: var(--font-syne), sans-serif;
+
+  /* Core brand — exact logo green */
+  --color-star-green: #35BD04;
+  --color-star-green-bright: #4FE01A;
+  --color-star-green-deep: #2A9A03;
+  --color-star-lime: #A8F0B0;
+
+  /* Star-motif gold accent */
+  --color-star-gold: #F5C518;
+  --color-star-gold-deep: #E6B800;
+
+  /* Dark surfaces */
+  --color-bg: #050A03;
+  --color-bg2: #091209;
+  --color-panel: #0D1A0D;
+  --color-panel2: #112011;
+
+  /* Text */
+  --color-white: #EDF7EE;
+  --color-muted: rgba(168, 240, 176, 0.6);
+  --color-muted-hi: rgba(168, 240, 176, 0.85);
+
+  /* Signals */
+  --color-red: #FF4444;
+
+  /* shadcn compatibility (dark-first) */
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: #050A03;
+  --color-foreground: #EDF7EE;
+  --color-card: #0D1A0D;
+  --color-card-foreground: #EDF7EE;
+  --color-popover: #0D1A0D;
+  --color-popover-foreground: #EDF7EE;
+  --color-primary: #35BD04;
+  --color-primary-foreground: #050A03;
+  --color-secondary: #112011;
+  --color-secondary-foreground: #EDF7EE;
+  --color-muted-foreground: rgba(168, 240, 176, 0.6);
+  --color-muted: #112011;
+  --color-accent: #112011;
+  --color-accent-foreground: #EDF7EE;
+  --color-destructive: #FF4444;
+  --color-border: rgba(53, 189, 4, 0.15);
+  --color-input: rgba(53, 189, 4, 0.15);
+  --color-ring: #35BD04;
+  --color-chart-1: #35BD04;
+  --color-chart-2: #F5C518;
+  --color-chart-3: #A8F0B0;
+  --color-chart-4: #4FE01A;
+  --color-chart-5: #2A9A03;
+  --color-sidebar: #091209;
+  --color-sidebar-foreground: #EDF7EE;
+  --color-sidebar-primary: #35BD04;
+  --color-sidebar-primary-foreground: #050A03;
+  --color-sidebar-accent: #112011;
+  --color-sidebar-accent-foreground: #EDF7EE;
+  --color-sidebar-border: rgba(53, 189, 4, 0.15);
+  --color-sidebar-ring: #35BD04;
+}
+
+/* ── LEGACY VARIABLE ALIASES (for components using var(--star-green) etc.) ── */
+:root {
+  --star-green: #35BD04;
+  --star-green-bright: #4FE01A;
+  --star-green-deep: #2A9A03;
+  --star-lime: #A8F0B0;
+  --star-gold: #F5C518;
+  --star-gold-deep: #E6B800;
+  --bg: #050A03;
+  --bg2: #091209;
+  --panel: #0D1A0D;
+  --panel2: #112011;
+  --border: rgba(53, 189, 4, 0.15);
+  --border-hi: rgba(53, 189, 4, 0.3);
+  --white: #EDF7EE;
+  --muted: rgba(168, 240, 176, 0.6);
+  --muted-hi: rgba(168, 240, 176, 0.85);
+  --red: #FF4444;
+  --r: 16px;
+  --r2: 24px;
+  --r3: 32px;
+  --background: #050A03;
+  --foreground: #EDF7EE;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: #050A03;
+    color: #EDF7EE;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.6;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(53, 189, 4, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 90% 80%, rgba(53, 189, 4, 0.04) 0%, transparent 70%);
+    background-attachment: fixed;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  ::selection { background: #35BD04; color: #050A03; }
+}
+
+/* ── TYPOGRAPHY ────────────────────────────────────────────────── */
+.font-display { font-family: var(--font-syne), sans-serif; }
+.font-mono { font-family: var(--font-syne-mono), monospace; }
+
+/* ── UTILITY ───────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ── NOISE OVERLAY ─────────────────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9990; opacity: 0.5;
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #050A03; }
+::-webkit-scrollbar-thumb {
+  background: rgba(53, 189, 4, 0.2);
+  border-radius: 10px;
+  border: 2px solid #050A03;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(53, 189, 4, 0.4); }
+
+/* ── CUSTOM CURSOR (desktop only) ──────────────────────────────── */
+@media (pointer: fine) {
+  .cursor-fine { cursor: none; }
+}
+.cur-dot, .cur-ring {
+  position: fixed; border-radius: 50%; pointer-events: none;
+  z-index: 9999; top: 0; left: 0;
+}
+.cur-dot {
+  width: 8px; height: 8px;
+  background: #35BD04;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s;
+}
+.cur-ring {
+  width: 32px; height: 32px;
+  border: 1.5px solid rgba(53, 189, 4, 0.5);
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s, width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+}
+@media (pointer: coarse) {
+  .cur-dot, .cur-ring { display: none; }
+}
+
+/* ── LIVE DOT ──────────────────────────────────────────────────── */
+.live-dot {
+  width: 7px; height: 7px;
+  background: #FF4444;
+  border-radius: 50%;
+  animation: blink 1.2s infinite;
+  flex-shrink: 0;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+
+/* ── EQUALIZER ─────────────────────────────────────────────────── */
+.eq { display: flex; align-items: flex-end; gap: 3px; height: 20px; }
+.eq span {
+  width: 3px; background: #35BD04; border-radius: 2px;
+  animation: eq 1s infinite;
+}
+.eq span:nth-child(1) { animation-delay: 0s; }
+.eq span:nth-child(2) { animation-delay: 0.15s; }
+.eq span:nth-child(3) { animation-delay: 0.3s; }
+.eq span:nth-child(4) { animation-delay: 0.1s; }
+.eq span:nth-child(5) { animation-delay: 0.25s; }
+@keyframes eq { 0%, 100% { height: 3px; } 50% { height: 18px; } }
+
+/* ── REVEAL ANIMATION ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+
+/* Fallback: if JS doesn't add .in class, show content after 1.5s */
+@keyframes revealFallback {
+  to { opacity: 1; transform: none; }
+}
+.reveal:not(.in) {
+  animation: revealFallback 0.1s 1.5s both;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; animation: none; }
+  .anim-up { animation: none; opacity: 1; }
+  .hero-glow { animation: none; }
+  .ticker-anim { animation: none; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-up { animation: fadeUp 0.8s both; }
+
+/* ── GLOW ──────────────────────────────────────────────────────── */
+@keyframes glow {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+}
+.hero-glow {
+  position: absolute;
+  width: min(700px, 120vw); height: min(700px, 120vw);
+  background: radial-gradient(circle, rgba(53, 189, 4, 0.15) 0%, transparent 65%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: glow 5s ease-in-out infinite;
+}
+
+/* ── TICKER ────────────────────────────────────────────────────── */
+@keyframes tick {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-anim {
+  display: flex; width: max-content;
+  animation: tick 40s linear infinite;
+}
+.ticker-wrap:hover .ticker-anim { animation-play-state: paused; }
+
+/* ── SECTION LABEL ─────────────────────────────────────────────── */
+.sec-label {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-syne-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #35BD04;
+  margin-bottom: 14px;
+}
+.sec-label::before {
+  content: "";
+  width: 28px; height: 2px;
+  background: #35BD04;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── TERMINAL CURSOR ───────────────────────────────────────────── */
+@keyframes cblink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.term-cursor {
+  display: inline-block; width: 7px; height: 13px;
+  background: #35BD04; vertical-align: middle;
+  margin-left: 2px;
+  animation: cblink 1s infinite;
+}
+
+/* ── LOGO GLOW ─────────────────────────────────────────────────── */
+.logo-badge {
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+  object-fit: contain;
+  box-shadow:
+    0 0 0 2px rgba(53, 189, 4, 0.35),
+    0 0 20px rgba(53, 189, 4, 0.25);
+  transition: box-shadow 0.3s;
+}
+.logo-badge:hover {
+  box-shadow:
+    0 0 0 2px rgba(53, 189, 4, 0.5),
+    0 0 30px rgba(53, 189, 4, 0.4);
+}
+
+/* ── MARQUEE DOT ───────────────────────────────────────────────── */
+.marquee-dot::after {
+  content: "";
+  width: 4px; height: 4px;
+  background: rgba(5, 10, 3, 0.35);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── CARD HOVER ────────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.3s, border-color 0.3s, background 0.3s;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(53, 189, 4, 0.3);
+}
+
+/* ── STICKY PLAYER SLIDE ───────────────────────────────────────── */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.sticky-player { animation: slideUp 0.4s ease both; }
+
+/* ── FREQUENCY BAR PULSE ───────────────────────────────────────── */
+@keyframes freq-bar {
+  0%, 100% { height: 20%; }
+  50% { height: 100%; }
+}
+.freq-bar {
+  background: #35BD04;
+  width: 3px;
+  border-radius: 2px;
+  animation: freq-bar 0.8s infinite ease-in-out;
+}
