@@ -379,6 +379,24 @@ body::after {
 .show-propose { padding-top: 14px; border-top: 1px solid var(--border); }
 .show-propose p { font-size: .73rem; color: var(--muted); margin-bottom: 10px; }
 
+/* ── SCHEDULE TABS ── */
+.sched-tabs {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.sched-tab {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 100px; padding: 9px 20px;
+  font-family: "Syne", sans-serif; font-size: .75rem;
+  font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); transition: all .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.sched-tab:hover { border-color: var(--border2); color: var(--white); }
+.sched-tab.on { background: var(--green); border-color: var(--green); color: #040a02; }
+.sched-panel { display: block; }
+.sched-panel.hidden { display: none; }
+
 /* ══ DIGITAL ════════════════════════════════════════════════ */
 #digital {
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
@@ -391,47 +409,70 @@ body::after {
   bottom: -120px; right: -120px; pointer-events: none;
 }
 .digital-grid { display: flex; flex-direction: column; gap: 40px; margin-top: 40px; }
-.ai-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
-.ai-card {
-  display: flex; gap: 14px; align-items: flex-start;
-  background: var(--panel); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 18px; position: relative; overflow: hidden;
-  transition: border-color .3s;
+
+/* IDEA GENERATOR CTA */
+.idea-cta {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, rgba(53,189,4,.12) 0%, rgba(53,189,4,.04) 100%);
+  border: 1px solid rgba(53,189,4,.3);
+  border-radius: var(--r2); padding: 20px;
+  margin-top: 28px; transition: all .3s;
+  position: relative; overflow: hidden;
 }
-.ai-card::before {
+.idea-cta::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(53,189,4,.1) 0%, transparent 60%);
+  opacity: 0; transition: opacity .3s; pointer-events: none;
+}
+.idea-cta:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(53,189,4,.2); }
+.idea-cta:hover::before { opacity: 1; }
+.idea-icon {
+  width: 52px; height: 52px; flex-shrink: 0;
+  background: var(--green); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  box-shadow: 0 0 24px rgba(53,189,4,.4);
+}
+.idea-text { flex: 1; min-width: 0; }
+.idea-text strong { display: block; font-family: "Syne", sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: -.01em; margin-bottom: 4px; }
+.idea-text span { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+.idea-arrow { font-size: 1.4rem; color: var(--green); flex-shrink: 0; transition: transform .25s; }
+.idea-cta:hover .idea-arrow { transform: translateX(4px); }
+
+/* RESOURCE CARDS */
+.res-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.res-card {
+  display: block;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 22px;
+  transition: all .3s; position: relative; overflow: hidden;
+}
+.res-card::before {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
   background: var(--green); transform: scaleY(0); transition: transform .3s; transform-origin: bottom;
 }
-.ai-card:hover { border-color: var(--border2); }
-.ai-card:hover::before { transform: scaleY(1); }
-.ai-icon {
-  width: 40px; height: 40px; flex-shrink: 0;
+.res-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,.3); }
+.res-card:hover::before { transform: scaleY(1); }
+.res-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.res-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
   background: rgba(53,189,4,.08); border: 1px solid rgba(53,189,4,.2);
-  border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
 }
-.ai-title { font-family: "Syne", sans-serif; font-weight: 700; font-size: .9rem; letter-spacing: -.01em; margin-bottom: 4px; }
-.ai-body { font-size: .8rem; color: var(--muted); line-height: 1.6; }
-.terminal {
-  background: #030904; border: 1px solid rgba(53,189,4,.22); border-radius: var(--r2); overflow: hidden;
-  font-family: "Syne Mono", monospace;
+.res-arrow { font-size: 1.1rem; color: var(--muted); transition: color .25s, transform .25s; }
+.res-card:hover .res-arrow { color: var(--green); transform: translate(2px,-2px); }
+.res-name { font-family: "Syne", sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -.02em; margin-bottom: 6px; }
+.res-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.res-tag {
+  display: inline-block; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+  border: 1px solid rgba(53,189,4,.2); color: rgba(156,222,156,.75);
 }
-.term-bar {
-  display: flex; align-items: center; gap: 6px;
-  background: #050e04; padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,.04);
+.res-more {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px; color: var(--green);
+  font-size: .84rem; font-weight: 600; transition: gap .2s;
 }
-.td { width: 10px; height: 10px; border-radius: 50%; }
-.td.r{background:#ff5f57} .td.y{background:#febc2e} .td.g{background:#28c840}
-.term-title { font-size: .66rem; color: var(--muted); margin-left: 6px; letter-spacing: .08em; }
-.term-body { padding: 20px; font-size: .77rem; line-height: 2.1; }
-.tl { display: flex; gap: 8px; }
-.tp { color: var(--green); } .tc { color: var(--white); }
-.to { color: rgba(156,222,156,.5); padding-left: 16px; }
-.tcur { display: inline-block; width: 7px; height: 12px; background: var(--green); vertical-align: middle; margin-left: 2px; animation: cblink 1s infinite; }
-@keyframes cblink { 0%,100%{opacity:1} 50%{opacity:0} }
-.nlive { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 18px; margin-top: 12px; }
-.nlive .ey { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 5px; }
-.nlive h4 { font-family: "Syne", sans-serif; font-weight: 700; font-size: .94rem; margin-bottom: 3px; }
-.nlive p { font-size: .78rem; color: var(--muted); }
+.res-more:hover { gap: 12px; }
 
 /* ══ COMMUNITY ══════════════════════════════════════════════ */
 #community { background: var(--bg2); border-top: 1px solid var(--border); }
@@ -579,6 +620,7 @@ footer {
   .show-feature { flex: 1; }
   .digital-grid { flex-direction: row; gap: 56px; }
   .digital-grid > div { flex: 1; }
+  .res-grid { grid-template-columns: 1fr 1fr; }
   .foot-top { flex-direction: row; gap: 56px; }
   .foot-brand { flex: 1.4; }
 }
@@ -744,117 +786,284 @@ footer {
   <div class="sec-inner">
     <div class="sec-label rev" data-i18n="shows_label">On Air</div>
     <h2 class="sec-title rev" data-i18n="shows_title">Shows That Move People</h2>
-    <div class="shows-wrap rev">
-      <div class="show-list">
-        <div class="show-row on" onclick="feat(this,'Morning Drive','Wake up with the community &mdash; news, music, and everything Klerksdorp needs to start the day right.')">
-          <div class="show-time">06:00</div>
-          <div class="show-info"><div class="show-name">Morning Drive</div><div class="show-host">Wake up with the community</div></div>
-          <div class="show-tag">Daily</div>
+    <p class="sec-body rev" style="margin-bottom:32px;">2026/2027 Content Programme Schedule &mdash; Star FM 102.9 MHz, Klerksdorp</p>
+
+    <!-- DAY TABS -->
+    <div class="sched-tabs rev" role="tablist" aria-label="Schedule by day">
+      <button class="sched-tab on" onclick="switchDay('mf')" role="tab" aria-selected="true"  aria-controls="day-mf" id="tab-mf">Mon &ndash; Thu</button>
+      <button class="sched-tab"    onclick="switchDay('fri')" role="tab" aria-selected="false" aria-controls="day-fri" id="tab-fri">Fri &ndash; Sat</button>
+      <button class="sched-tab"    onclick="switchDay('sun')" role="tab" aria-selected="false" aria-controls="day-sun" id="tab-sun">Sunday</button>
+    </div>
+
+    <!-- MON–THU -->
+    <div class="sched-panel" id="day-mf" role="tabpanel" aria-labelledby="tab-mf">
+      <div class="shows-wrap">
+        <div class="show-list">
+          <div class="show-row on" onclick="feat(this,'Matlhagatlhaga a Moso','The early-morning drive with Tshepo Koloane &mdash; setting the tone for Klerksdorp before sunrise.')">
+            <div class="show-time">02:00</div>
+            <div class="show-info"><div class="show-name">Matlhagatlhaga a Moso</div><div class="show-host">Tshepo Koloane</div></div>
+            <div class="show-tag">Early</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'StarFM 6to9 Breakfast','Klerksdorp wakes up with Allucius Mocumi &amp; Bokamoso Selloana &mdash; the morning energy your community needs.')">
+            <div class="show-time">06:00</div>
+            <div class="show-info"><div class="show-name">StarFM 6to9 Breakfast</div><div class="show-host">Allucius Mocumi &amp; Bokamoso Selloana</div></div>
+            <div class="show-tag">Breakfast</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'The Easy Morning Life','Joy Bore brings a relaxed, uplifting mid-morning vibe to carry you through to lunch.')">
+            <div class="show-time">09:00</div>
+            <div class="show-info"><div class="show-name">The Easy Morning Life</div><div class="show-host">Joy Bore</div></div>
+            <div class="show-tag">Morning</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'The Classic Planet','Bloke Kolobe curates the classic hits that define Klerksdorp&rsquo;s soul &mdash; midday radio at its finest.')">
+            <div class="show-time">12:00</div>
+            <div class="show-info"><div class="show-name">The Classic Planet</div><div class="show-host">Bloke Kolobe</div></div>
+            <div class="show-tag">Classics</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Chaile Tyd','Nthabiseng Mkwanazi brings the afternoon drive-time energy &mdash; music, community news, and good vibes.')">
+            <div class="show-time">15:00</div>
+            <div class="show-info"><div class="show-name">Chaile Tyd</div><div class="show-host">Nthabiseng Mkwanazi</div></div>
+            <div class="show-tag">Drive</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'The New Hub','Temeki Retshidisitswe &mdash; the pulse of what&rsquo;s new, relevant, and happening in the community.')">
+            <div class="show-time">18:00</div>
+            <div class="show-info"><div class="show-name">The New Hub</div><div class="show-host">Temeki Retshidisitswe</div></div>
+            <div class="show-tag">Current</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Star FM Business Show','Sam Masilela unpacks business, entrepreneurship, and economic opportunity for the Southern District.')">
+            <div class="show-time">19:00</div>
+            <div class="show-info"><div class="show-name">Star FM Business Show</div><div class="show-host">Sam Masilela</div></div>
+            <div class="show-tag">Business</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Tsa Pelo Yame','Keneilwe Mere closes the night with heart &mdash; music and conversation that speaks to the soul.')">
+            <div class="show-time">22:00</div>
+            <div class="show-info"><div class="show-name">Tsa Pelo Yame</div><div class="show-host">Keneilwe Mere</div></div>
+            <div class="show-tag">Night</div>
+          </div>
         </div>
-        <div class="show-row" onclick="feat(this,'Tech Talk','Digital tips, app guides and tech news &mdash; no jargon, just practical and useful.')">
-          <div class="show-time">09:00</div>
-          <div class="show-info"><div class="show-name">Tech Talk</div><div class="show-host">Digital tips for everyday life</div></div>
-          <div class="show-tag">Tech</div>
-        </div>
-        <div class="show-row" onclick="feat(this,'Lunch With The Nation','News, views and community voices from across the Southern District and beyond.')">
-          <div class="show-time">12:00</div>
-          <div class="show-info"><div class="show-name">Lunch With The Nation</div><div class="show-host">News, views &amp; community voices</div></div>
-          <div class="show-tag">News</div>
-        </div>
-        <div class="show-row" onclick="feat(this,'Youth Hustle Hour','Business ideas, entrepreneurship stories and opportunities for the next generation of SA leaders.')">
-          <div class="show-time">15:00</div>
-          <div class="show-info"><div class="show-name">Youth Hustle Hour</div><div class="show-host">Business &amp; entrepreneurship</div></div>
-          <div class="show-tag">Biz</div>
-        </div>
-        <div class="show-row" onclick="feat(this,'Digital Futures','AI, technology and what's coming next &mdash; explained in plain language for every listener.')">
-          <div class="show-time">18:00</div>
-          <div class="show-info"><div class="show-name">Digital Futures</div><div class="show-host">AI &amp; technology</div></div>
-          <div class="show-tag">AI</div>
-        </div>
-        <div class="show-row" onclick="feat(this,'AfroBeats &amp; Chill','Culture, music and the African story &mdash; celebrating who we are and where we're going.')">
-          <div class="show-time">20:00</div>
-          <div class="show-info"><div class="show-name">AfroBeats &amp; Chill</div><div class="show-host">Culture &amp; the African story</div></div>
-          <div class="show-tag">Music</div>
-        </div>
-      </div>
-      <div class="show-feature">
-        <div class="show-wave" aria-hidden="true">
-          <svg viewBox="0 0 400 54" preserveAspectRatio="none">
-            <path d="M0,27 Q25,6 50,27 Q75,48 100,27 Q125,6 150,27 Q175,48 200,27 Q225,6 250,27 Q275,48 300,27 Q325,6 350,27 Q375,48 400,27" fill="none" stroke="#35BD04" stroke-width="1.5" opacity=".7"/>
-            <path d="M0,27 Q25,13 50,27 Q75,41 100,27 Q125,13 150,27 Q175,41 200,27 Q225,13 250,27 Q275,41 300,27 Q325,13 350,27 Q375,41 400,27" fill="none" stroke="#35BD04" stroke-width=".7" opacity=".3"/>
-          </svg>
-        </div>
-        <div class="sf-title" id="sf-title">Now On Air:<br>Morning Drive</div>
-        <div class="sf-body" id="sf-body">Wake up with the community &mdash; news, music, and everything Klerksdorp needs to start the day right.</div>
-        <a href="https://famcast.co.za/q/stations/star-fm/" target="_blank" rel="noopener" class="sf-link">Listen Live &rarr;</a>
-        <div class="show-propose">
-          <p>Want your show on Star FM?</p>
-          <a href="#contact" class="btn-p" style="font-size:.8rem;padding:10px 20px;display:inline-flex;">Submit a Proposal</a>
+        <div class="show-feature">
+          <div class="show-wave" aria-hidden="true">
+            <svg viewBox="0 0 400 54" preserveAspectRatio="none">
+              <path d="M0,27 Q25,6 50,27 Q75,48 100,27 Q125,6 150,27 Q175,48 200,27 Q225,6 250,27 Q275,48 300,27 Q325,6 350,27 Q375,48 400,27" fill="none" stroke="#35BD04" stroke-width="1.5" opacity=".7"/>
+              <path d="M0,27 Q25,13 50,27 Q75,41 100,27 Q125,13 150,27 Q175,41 200,27 Q225,13 250,27 Q275,41 300,27 Q325,13 350,27 Q375,41 400,27" fill="none" stroke="#35BD04" stroke-width=".7" opacity=".3"/>
+            </svg>
+          </div>
+          <div class="sf-title" id="sf-title">Now Featured:<br>Matlhagatlhaga a Moso</div>
+          <div class="sf-body" id="sf-body">The early-morning drive with Tshepo Koloane &mdash; setting the tone for Klerksdorp before sunrise.</div>
+          <a href="https://famcast.co.za/q/stations/star-fm/" target="_blank" rel="noopener" class="sf-link">Listen Live &rarr;</a>
+          <div class="show-propose">
+            <p>Want your show on Star FM?</p>
+            <a href="#contact" class="btn-p" style="font-size:.8rem;padding:10px 20px;display:inline-flex;">Submit a Proposal</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════════ DIGITAL ═══════════════ -->
-<section id="digital" class="sec">
-  <div class="sec-inner">
-    <div class="sec-label rev" data-i18n="digital_label">Digital Literacy</div>
-    <div class="digital-grid">
-      <div>
-        <h2 class="sec-title rev" data-i18n="digital_title">We Teach the<br>Tools of Tomorrow</h2>
-        <p class="sec-body rev" data-i18n="digital_body">Star FM doesn&rsquo;t just broadcast &mdash; we educate. AI awareness, digital skills, and tech for entrepreneurs &mdash; in plain language, on air, for every listener.</p>
-        <div class="ai-cards">
-          <div class="ai-card rev d1">
-            <div class="ai-icon" aria-hidden="true">🤖</div>
-            <div>
-              <div class="ai-title" data-i18n="ai1_title">AI Literacy Segments</div>
-              <div class="ai-body" data-i18n="ai1_body">Weekly segments breaking down what AI is and how it&rsquo;s changing daily life &mdash; no jargon.</div>
-            </div>
+    <!-- FRI–SAT -->
+    <div class="sched-panel hidden" id="day-fri" role="tabpanel" aria-labelledby="tab-fri">
+      <div class="shows-wrap">
+        <div class="show-list">
+          <div class="show-row on" onclick="feat(this,'Friday Night with Letlhogonolo Khaba','Letlhogonolo Khaba kicks off the weekend &mdash; Friday night energy for Klerksdorp.')">
+            <div class="show-time">19:00</div>
+            <div class="show-info"><div class="show-name">Friday Night</div><div class="show-host">Letlhogonolo Khaba</div></div>
+            <div class="show-tag">Fri Night</div>
           </div>
-          <div class="ai-card rev d2">
-            <div class="ai-icon" aria-hidden="true">📱</div>
-            <div>
-              <div class="ai-title" data-i18n="ai2_title">Digital Skills Radio</div>
-              <div class="ai-body" data-i18n="ai2_body">WhatsApp Business, mobile banking, SASSA digital &mdash; practical skills your community can use today.</div>
-            </div>
+          <div class="show-row" onclick="feat(this,'Late Night with Kopano Seleka','Kopano Seleka keeps the weekend going deep into the night.')">
+            <div class="show-time">22:00</div>
+            <div class="show-info"><div class="show-name">Late Night</div><div class="show-host">Kopano Seleka</div></div>
+            <div class="show-tag">Late</div>
           </div>
-          <div class="ai-card rev d3">
-            <div class="ai-icon" aria-hidden="true">🌐</div>
-            <div>
-              <div class="ai-title" data-i18n="ai3_title">Tech for Entrepreneurs</div>
-              <div class="ai-body" data-i18n="ai3_body">Helping township businesses go digital, reach more customers, and compete in a connected economy.</div>
-            </div>
+          <div class="show-row" onclick="feat(this,'Early Saturday with Tshego Motlhaoleng','Tshego Motlhaoleng bridges the night into Saturday morning.')">
+            <div class="show-time">02:00</div>
+            <div class="show-info"><div class="show-name">Early Saturday</div><div class="show-host">Tshego Motlhaoleng</div></div>
+            <div class="show-tag">Early</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Lere Tlhabetse','Matlapeng Lucas brings the Saturday morning sunrise show &mdash; warm, local, and alive.')">
+            <div class="show-time">06:00</div>
+            <div class="show-info"><div class="show-name">Lere Tlhabetse</div><div class="show-host">Matlapeng Lucas</div></div>
+            <div class="show-tag">Sunrise</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'StarFM Top 20','Thato Selinga counts down the hottest 20 tracks on Star FM &mdash; the chart that Klerksdorp votes for.')">
+            <div class="show-time">09:00</div>
+            <div class="show-info"><div class="show-name">StarFM Top 20</div><div class="show-host">Thato Selinga</div></div>
+            <div class="show-tag">Charts</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Motheo Setso','Nkosana Mondi celebrates African culture, heritage, and identity in the Saturday afternoon spotlight.')">
+            <div class="show-time">12:00</div>
+            <div class="show-info"><div class="show-name">Motheo Setso</div><div class="show-host">Nkosana Mondi</div></div>
+            <div class="show-tag">Culture</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Golden Groove','Thabang Letsaba spins the golden era hits that make Saturday afternoons legendary.')">
+            <div class="show-time">15:00</div>
+            <div class="show-info"><div class="show-name">Golden Groove</div><div class="show-host">Thabang Letsaba</div></div>
+            <div class="show-tag">Classics</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'StarFM Sports Corner','Pule Mothibi covers all the action &mdash; local and national sport for the passionate fans of the Southern District.')">
+            <div class="show-time">18:00</div>
+            <div class="show-info"><div class="show-name">StarFM Sports Corner</div><div class="show-host">Pule Mothibi</div></div>
+            <div class="show-tag">Sport</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Ruk Jou Lyfie','Christelee Van Wyk brings the Saturday night party &mdash; dancing, fun, and community celebration.')">
+            <div class="show-time">19:00</div>
+            <div class="show-info"><div class="show-name">Ruk Jou Lyfie</div><div class="show-host">Christelee Van Wyk</div></div>
+            <div class="show-tag">Party</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Tsa Menate','Lesego Moepi closes Saturday night with the flavour &mdash; the best of local and African sounds.')">
+            <div class="show-time">22:00</div>
+            <div class="show-info"><div class="show-name">Tsa Menate</div><div class="show-host">Lesego Moepi</div></div>
+            <div class="show-tag">Night</div>
+          </div>
+        </div>
+        <div class="show-feature">
+          <div class="show-wave" aria-hidden="true">
+            <svg viewBox="0 0 400 54" preserveAspectRatio="none">
+              <path d="M0,27 Q25,6 50,27 Q75,48 100,27 Q125,6 150,27 Q175,48 200,27 Q225,6 250,27 Q275,48 300,27 Q325,6 350,27 Q375,48 400,27" fill="none" stroke="#35BD04" stroke-width="1.5" opacity=".7"/>
+              <path d="M0,27 Q25,13 50,27 Q75,41 100,27 Q125,13 150,27 Q175,41 200,27 Q225,13 250,27 Q275,41 300,27 Q325,13 350,27 Q375,41 400,27" fill="none" stroke="#35BD04" stroke-width=".7" opacity=".3"/>
+            </svg>
+          </div>
+          <div class="sf-title" id="sf-title-fri">Now Featured:<br>Friday Night</div>
+          <div class="sf-body" id="sf-body-fri">Letlhogonolo Khaba kicks off the weekend &mdash; Friday night energy for Klerksdorp.</div>
+          <a href="https://famcast.co.za/q/stations/star-fm/" target="_blank" rel="noopener" class="sf-link">Listen Live &rarr;</a>
+          <div class="show-propose">
+            <p>Want your show on Star FM?</p>
+            <a href="#contact" class="btn-p" style="font-size:.8rem;padding:10px 20px;display:inline-flex;">Submit a Proposal</a>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- SUNDAY -->
+    <div class="sched-panel hidden" id="day-sun" role="tabpanel" aria-labelledby="tab-sun">
+      <div class="shows-wrap">
+        <div class="show-list">
+          <div class="show-row on" onclick="feat(this,'Uvuko la Moya','Mpumelelo Qotwana opens Sunday with spiritual depth and soul &mdash; the spirit of the morning.')">
+            <div class="show-time">02:00</div>
+            <div class="show-info"><div class="show-name">Uvuko la Moya</div><div class="show-host">Mpumelelo Qotwana</div></div>
+            <div class="show-tag">Spiritual</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Praise &amp; Worship','TT leads Sunday morning praise and worship &mdash; uplifting the community in faith and song.')">
+            <div class="show-time">06:00</div>
+            <div class="show-info"><div class="show-name">Praise &amp; Worship</div><div class="show-host">TT</div></div>
+            <div class="show-tag">Worship</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Ke Tsele mo Seraleng','Pempe Radebe &mdash; reflective Sunday mid-morning radio, connecting community through story and music.')">
+            <div class="show-time">09:00</div>
+            <div class="show-info"><div class="show-name">Ke Tsele mo Seraleng</div><div class="show-host">Pempe Radebe</div></div>
+            <div class="show-tag">Morning</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'The Jassical Moment','Bloke Kolobe brings jazz and classical sounds together for a uniquely sophisticated Sunday afternoon.')">
+            <div class="show-time">12:00</div>
+            <div class="show-info"><div class="show-name">The Jassical Moment</div><div class="show-host">Bloke Kolobe</div></div>
+            <div class="show-tag">Jazz</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Fathers Matter','Libueng Tshabalala shines a spotlight on fatherhood, family, and the role of men in the community.')">
+            <div class="show-time">14:00</div>
+            <div class="show-info"><div class="show-name">Fathers Matter</div><div class="show-host">Libueng Tshabalala</div></div>
+            <div class="show-tag">Family</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Sunday Serenade','Thabang Letsaba winds down the afternoon with a beautiful serenade to close the weekend.')">
+            <div class="show-time">15:00</div>
+            <div class="show-info"><div class="show-name">Sunday Serenade</div><div class="show-host">Thabang Letsaba</div></div>
+            <div class="show-tag">Serenade</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Sunday Evening','Mabusela Mandla, Lebusho Seiphehlo &amp; Dumisani Rorisang bring the community together for Sunday evening radio.')">
+            <div class="show-time">18:00</div>
+            <div class="show-info"><div class="show-name">Sunday Evening</div><div class="show-host">Mandla &bull; Lebusho &bull; Dumisani</div></div>
+            <div class="show-tag">Evening</div>
+          </div>
+          <div class="show-row" onclick="feat(this,'Disaneng Tsa Maikutlo','Letlhogonolo Khaba closes the week with reflection, emotion, and the music that moves the soul.')">
+            <div class="show-time">22:00</div>
+            <div class="show-info"><div class="show-name">Disaneng Tsa Maikutlo</div><div class="show-host">Letlhogonolo Khaba</div></div>
+            <div class="show-tag">Night</div>
+          </div>
+        </div>
+        <div class="show-feature">
+          <div class="show-wave" aria-hidden="true">
+            <svg viewBox="0 0 400 54" preserveAspectRatio="none">
+              <path d="M0,27 Q25,6 50,27 Q75,48 100,27 Q125,6 150,27 Q175,48 200,27 Q225,6 250,27 Q275,48 300,27 Q325,6 350,27 Q375,48 400,27" fill="none" stroke="#35BD04" stroke-width="1.5" opacity=".7"/>
+              <path d="M0,27 Q25,13 50,27 Q75,41 100,27 Q125,13 150,27 Q175,41 200,27 Q225,13 250,27 Q275,41 300,27 Q325,13 350,27 Q375,41 400,27" fill="none" stroke="#35BD04" stroke-width=".7" opacity=".3"/>
+            </svg>
+          </div>
+          <div class="sf-title" id="sf-title-sun">Now Featured:<br>Uvuko la Moya</div>
+          <div class="sf-body" id="sf-body-sun">Mpumelelo Qotwana opens Sunday with spiritual depth and soul &mdash; the spirit of the morning.</div>
+          <a href="https://famcast.co.za/q/stations/star-fm/" target="_blank" rel="noopener" class="sf-link">Listen Live &rarr;</a>
+          <div class="show-propose">
+            <p>Want your show on Star FM?</p>
+            <a href="#contact" class="btn-p" style="font-size:.8rem;padding:10px 20px;display:inline-flex;">Submit a Proposal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ DIGITAL / BUSINESS RESOURCES ═══════════════ -->
+<section id="digital" class="sec">
+  <div class="sec-inner">
+    <div class="sec-label rev" data-i18n="digital_label">Free Business Resources</div>
+    <div class="digital-grid">
+      <div>
+        <h2 class="sec-title rev" data-i18n="digital_title">Tools to Build,<br>Grow &amp; Fund<br>Your Hustle</h2>
+        <p class="sec-body rev" data-i18n="digital_body">Star FM listeners get more than radio. Through our partnership with Business Hustle, the community has free access to real digital tools &mdash; civic-tech platforms, business intelligence, and an AI Idea Generator that finds automation opportunities for your business in seconds.</p>
+
+        <!-- IDEA GENERATOR CTA -->
+        <a href="https://www.businesshustle.co.za/#idea-generator" target="_blank" rel="noopener" class="idea-cta rev d1">
+          <div class="idea-icon" aria-hidden="true">💡</div>
+          <div class="idea-text">
+            <strong data-i18n="idea_title">Free AI Idea Generator</strong>
+            <span data-i18n="idea_sub">Describe your business in one sentence &mdash; get three automation ideas you can deploy this quarter.</span>
+          </div>
+          <div class="idea-arrow" aria-hidden="true">&rarr;</div>
+        </a>
+      </div>
+
       <div class="rev d1">
-        <div class="terminal">
-          <div class="term-bar">
-            <div class="td r"></div><div class="td y"></div><div class="td g"></div>
-            <div class="term-title">star-fm-digital &mdash; live session</div>
-          </div>
-          <div class="term-body">
-            <div class="tl"><span class="tp">$</span><span class="tc">&nbsp;businesshustle --platform</span></div>
-            <div class="to">blackbiz.co.za &middot; opentender.online<br>&nbsp;&nbsp;kloofstreet.online &middot; hustleportal.online</div>
-            <br>
-            <div class="tl"><span class="tp">$</span><span class="tc">&nbsp;blackbiz --info</span></div>
-            <div class="to">SA&rsquo;s Black Business Intelligence Platform.<br>&nbsp;&nbsp;Find, verify &amp; support Black-owned businesses.</div>
-            <br>
-            <div class="tl"><span class="tp">$</span><span class="tc">&nbsp;opentender --query "North West"</span></div>
-            <div class="to">Open government tenders. Free. Transparent.<br>&nbsp;&nbsp;Built on Section 32 of the Constitution.</div>
-            <br>
-            <div class="tl"><span class="tp">$</span><span class="tc">&nbsp;contact --business-hustle</span></div>
-            <div class="to">team@businesshustle.co.za &middot; +27 74 481 5163</div>
-            <br>
-            <div class="tl"><span class="tp">$</span><span class="tc">&nbsp;visit businesshustle.co.za<span class="tcur"></span></span></div>
-          </div>
+        <!-- RESOURCE LINK CARDS -->
+        <div class="res-grid">
+          <a href="https://blackbiz.co.za/" target="_blank" rel="noopener" class="res-card">
+            <div class="res-top">
+              <div class="res-icon" aria-hidden="true">🏢</div>
+              <div class="res-arrow" aria-hidden="true">&#8599;</div>
+            </div>
+            <div class="res-name">BlackBiz</div>
+            <div class="res-desc" data-i18n="res_blackbiz">South Africa&rsquo;s Black Business Intelligence Platform &mdash; verified directory, business feed &amp; growth tools.</div>
+            <div class="res-tag">Business Platform</div>
+          </a>
+
+          <a href="https://www.opentender.online/" target="_blank" rel="noopener" class="res-card">
+            <div class="res-top">
+              <div class="res-icon" aria-hidden="true">📋</div>
+              <div class="res-arrow" aria-hidden="true">&#8599;</div>
+            </div>
+            <div class="res-name">OpenTender ZA</div>
+            <div class="res-desc" data-i18n="res_opentender">Procurement transparency with supplier verification and trust ratings across public tenders.</div>
+            <div class="res-tag">Civic Tech</div>
+          </a>
+
+          <a href="https://www.fundingstatssa.online/" target="_blank" rel="noopener" class="res-card">
+            <div class="res-top">
+              <div class="res-icon" aria-hidden="true">📊</div>
+              <div class="res-arrow" aria-hidden="true">&#8599;</div>
+            </div>
+            <div class="res-name">FundingStatsSA</div>
+            <div class="res-desc" data-i18n="res_funding">Civic dashboard tracking South African development funding &mdash; verified figures, clear visualisations.</div>
+            <div class="res-tag">Civic Tech</div>
+          </a>
+
+          <a href="https://www.policedata.online/" target="_blank" rel="noopener" class="res-card">
+            <div class="res-top">
+              <div class="res-icon" aria-hidden="true">🚓</div>
+              <div class="res-arrow" aria-hidden="true">&#8599;</div>
+            </div>
+            <div class="res-name">PoliceData ZA</div>
+            <div class="res-desc" data-i18n="res_police">Crime statistics made accessible &mdash; real SAPS figures &amp; interactive heat maps for your community.</div>
+            <div class="res-tag">Civic Tech</div>
+          </a>
         </div>
-        <div class="nlive">
-          <div class="ey">📡 This Week on Digital Futures</div>
-          <h4>Free AI tools for SA entrepreneurs</h4>
-          <p>Monday 18:00 &middot; Live on Star FM 102.9</p>
-        </div>
+
+        <a href="https://www.businesshustle.co.za/#resources" target="_blank" rel="noopener" class="res-more">
+          <span data-i18n="res_more">Explore 120+ free business resources</span> &rarr;
+        </a>
       </div>
     </div>
   </div>
@@ -994,12 +1203,40 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeD();});
 const rObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rObs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rev').forEach(el=>rObs.observe(el));
 
+// ── SCHEDULE TABS
+function switchDay(day) {
+  // tabs
+  document.querySelectorAll('.sched-tab').forEach(t => t.classList.remove('on'));
+  const tabMap = {mf:'tab-mf', fri:'tab-fri', sun:'tab-sun'};
+  const btn = document.getElementById(tabMap[day]);
+  if (btn) { btn.classList.add('on'); btn.setAttribute('aria-selected','true'); }
+  document.querySelectorAll('.sched-tab').forEach(t => {
+    if (t !== btn) t.setAttribute('aria-selected','false');
+  });
+  // panels
+  document.querySelectorAll('.sched-panel').forEach(p => p.classList.add('hidden'));
+  const panelMap = {mf:'day-mf', fri:'day-fri', sun:'day-sun'};
+  const panel = document.getElementById(panelMap[day]);
+  if (panel) panel.classList.remove('hidden');
+  // reset feature card in new panel
+  const firstRow = panel && panel.querySelector('.show-row');
+  if (firstRow) {
+    panel.querySelectorAll('.show-row').forEach(r => r.classList.remove('on'));
+    firstRow.classList.add('on');
+  }
+}
+
 // ── SHOW FEATURE
-function feat(row,title,body){
-  document.querySelectorAll('.show-row').forEach(r=>r.classList.remove('on'));
+function feat(row, title, body) {
+  // only de-select rows within the same panel
+  const panel = row.closest('.sched-panel');
+  if (panel) panel.querySelectorAll('.show-row').forEach(r => r.classList.remove('on'));
   row.classList.add('on');
-  document.getElementById('sf-title').innerHTML='Now Featured:<br>'+title;
-  document.getElementById('sf-body').innerHTML=body;
+  // update the feature card within this panel
+  const titleEl = panel && panel.querySelector('[id^="sf-title"]');
+  const bodyEl  = panel && panel.querySelector('[id^="sf-body"]');
+  if (titleEl) titleEl.innerHTML = 'Now Featured:<br>' + title;
+  if (bodyEl)  bodyEl.innerHTML  = body;
 }
 
 // ── FORM SUBMIT
@@ -1039,15 +1276,16 @@ const T = {
     "impact_4": "From Johannesburg — heartbeat of the Southern District",
     "shows_label": "On Air",
     "shows_title": "Shows That Move People",
-    "digital_label": "Digital Literacy",
-    "digital_title": "We Teach the Tools of Tomorrow",
-    "digital_body": "Star FM doesn’t just broadcast — we educate. AI awareness, digital skills, and tech for entrepreneurs — in plain language, on air, for every listener.",
-    "ai1_title": "AI Literacy Segments",
-    "ai1_body": "Weekly segments breaking down what AI is and how it’s already changing daily life — no jargon.",
-    "ai2_title": "Digital Skills Radio",
-    "ai2_body": "WhatsApp Business, mobile banking, SASSA digital — practical skills your community can use today.",
-    "ai3_title": "Tech for Entrepreneurs",
-    "ai3_body": "Helping township businesses go digital, reach customers, and compete in a connected economy.",
+    "digital_label": "Free Business Resources",
+    "digital_title": "Tools to Build, Grow & Fund Your Hustle",
+    "digital_body": "Star FM listeners get more than radio. Through our partnership with Business Hustle, the community has free access to real digital tools — civic-tech platforms, business intelligence, and an AI Idea Generator that finds automation opportunities for your business in seconds.",
+    "idea_title": "Free AI Idea Generator",
+    "idea_sub": "Describe your business in one sentence — get three automation ideas you can deploy this quarter.",
+    "res_blackbiz": "South Africa’s Black Business Intelligence Platform — verified directory, business feed & growth tools.",
+    "res_opentender": "Procurement transparency with supplier verification and trust ratings across public tenders.",
+    "res_funding": "Civic dashboard tracking South African development funding — verified figures, clear visualisations.",
+    "res_police": "Crime statistics made accessible — real SAPS figures & interactive heat maps for your community.",
+    "res_more": "Explore 120+ free business resources",
     "community_label": "The Mission",
     "community_title": "Built For The Community",
     "community_body": "Star FM 102.9 is not a corporate station. We are owned by, built for, and powered by the community of Klerksdorp and the Southern District of North West.",
@@ -1111,15 +1349,16 @@ const T = {
     "impact_4": "Go tswa Johannesburg — pelo ya Selegae sa Bokone",
     "shows_label": "Godimo Ga Earwaves",
     "shows_title": "Diprogramme tse di Suthisang Batho",
-    "digital_label": "Thuto ya Dijithale",
-    "digital_title": "Re Ruta Dithutiso tsa Kamoso",
-    "digital_body": "Star FM ga e kgase fela — re ruta. Maele a AI, ditiro tsa dijithale le thekenoloji ya badiri — ka puo ya tlhopha, godimo ga earwaves.",
-    "ai1_title": "Dikgang tsa Thuto ya AI",
-    "ai1_body": "Dikgang tsa beke nngwe le nngwe di tlhalosa gore AI ke eng le gore e fetola bophelo jwa letsatsi le letsatsi jang.",
-    "ai2_title": "Redio ya Ditiro tsa Dijithale",
-    "ai2_body": "WhatsApp Business, banki ya mogala, SASSA ya dijithale — ditiro tse setšhaba se ka di dirisang lehono.",
-    "ai3_title": "Thekenoloji ya Badiri",
-    "ai3_body": "Go thusa dikgwebo tsa dikae go nna tsa dijithale, go fitlhelela bareki le go kgatlhana mo ekonoming e e kopaneng.",
+    "digital_label": "Didiriswa tsa Kgwebo tsa Mahala",
+    "digital_title": "Didiriswa tsa go Aga, go Gola le go Thusa Kgwebo ya Gago",
+    "digital_body": "Baleetsi ba Star FM ba bona go feta radio fela. Ka tirisano le Business Hustle, setšhaba se na le tsela ya mahala ya go dirisa didiriswa tsa dijithale — dipuoteng tsa civic-tech, botlhale jwa kgwebo, le AI Idea Generator e e batlang ditšhono tsa go itirela mo kgwebong ya gago ka bonako.",
+    "idea_title": "AI Idea Generator ya Mahala",
+    "idea_sub": "Tlhalosa kgwebo ya gago ka polelo e le nngwe — o bone dikakanyo tse tharo tse o ka di dirisang.",
+    "res_blackbiz": "Platform ya Botlhale jwa Kgwebo ya Batho ba Bantsho ya Aforika Borwa — direkoto tse di netefaditsweng le didiriswa tsa kgolo.",
+    "res_opentender": "Ponalo ya theko ka netefatso ya baabi le dikelo tsa tshepo mo dithenderong tsa setšhaba.",
+    "res_funding": "Dashboard ya civic e e latelang tšhelete ya ntshetsopele ya Aforika Borwa — dipalo tse di netefaditsweng.",
+    "res_police": "Dipalopalo tsa bosenyi tse di bonolo — dipalo tsa nnete tsa SAPS le dimmapa tsa mogote tsa setšhaba sa gago.",
+    "res_more": "Batla didiriswa tsa kgwebo tsa mahala tse 120+",
     "community_label": "Maikaelelo",
     "community_title": "E Agilwe Mme le Setšhaba",
     "community_body": "Star FM 102.9 ga se steixene ya kgwebo. Re bona, re agilwe, re thusiwa ke setšhaba sa Klerksdorp le Selegae sa Bokone.",
@@ -1183,15 +1422,16 @@ const T = {
     "impact_4": "Ho tswa Johannesburg — pelo ya Kgaolo ya Borwa",
     "shows_label": "Godimo Earwaves",
     "shows_title": "Diprogramme tse di Suthisang Batho",
-    "digital_label": "Thuto ya Dijithale",
-    "digital_title": "Re Ruta Ditlhahiso tsa Kamoso",
-    "digital_body": "Star FM ha e phatlalatse feela — re ruta. Tsebo ya AI, botsebo ba dijithale le thekenoloji ya baqapi ba kgwebo — ka puo e bonolo, earwaves.",
-    "ai1_title": "Dikgang tsa Thuto ya AI",
-    "ai1_body": "Dikgang tsa beke nngwe le nngwe di hlalosa hore AI ke eng le hore e fetola bophelo ba letsatsi le letsatsi jang.",
-    "ai2_title": "Redio ya Botsebo ba Dijithale",
-    "ai2_body": "WhatsApp Business, banka ya mohala, SASSA ya dijithale — botsebo bo ka sebelisiwang ke sechaba sa hao kajeno.",
-    "ai3_title": "Thekenoloji ya Baqapi ba Kgwebo",
-    "ai3_body": "Ho thusa dikgwebo tsa motse ho nka karolo ya dijithale, ho fihla bareki le ho pheta-phetana ekonoming e kopaneng.",
+    "digital_label": "Disebediswa tsa Kgwebo tsa Mahala",
+    "digital_title": "Disebediswa tsa ho Aha, ho Hola le ho Tshehetsa Kgwebo ya Hao",
+    "digital_body": "Bamameli ba Star FM ba fumana ho feta radio feela. Ka tshebedisano le Business Hustle, sechaba se na le monyetla wa mahala wa ho sebedisa disebediswa tsa dijithale — dipolatefomo tsa civic-tech, bohlale ba kgwebo, le AI Idea Generator e fumanang menyetla ya ho iketsetsa kgwebong ya hao ka potlako.",
+    "idea_title": "AI Idea Generator ya Mahala",
+    "idea_sub": "Hlalosa kgwebo ya hao ka polelo e le nngwe — o fumane mehopolo e meraro eo o ka e sebedisang.",
+    "res_blackbiz": "Polatefomo ya Bohlale ba Kgwebo ya Batho ba Batsho ya Afrika Borwa — buka ya mangolo e netefaditsweng le disebediswa tsa kgolo.",
+    "res_opentender": "Ponahalo ya theko ka netefatso ya bafani le dikelo tsa tshepo ditenthereng tsa setjhaba.",
+    "res_funding": "Dashboard ya civic e latellang tjhelete ya ntshetsopele ya Afrika Borwa — dipalo tse netefaditsweng.",
+    "res_police": "Dipalopalo tsa botlokotsebe tse fumanehang — dipalo tsa nnete tsa SAPS le dimmapa tsa mocheso tsa sechaba sa hao.",
+    "res_more": "Batla disebediswa tsa kgwebo tsa mahala tse 120+",
     "community_label": "Sepheo",
     "community_title": "E Ahilwe Bakeng sa Sechaba",
     "community_body": "Star FM 102.9 ha se seteishene sa kgwebo. Re beilwe, re ahilwe, re thusiwa ke sechaba sa Klerksdorp le Kgaolo ya Borwa ya Bokone-Bophirima.",
