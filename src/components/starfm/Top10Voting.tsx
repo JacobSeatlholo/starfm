@@ -65,12 +65,13 @@ export function Top10Voting() {
     if (result.ok) {
       addVotedSong(song.songName);
       setVoted(getVotedSongs());
-      // Optimistic update
+      // Optimistic update - clamp to valid numbers
+      const newVotes = Math.max(0, Math.round(result.data?.newVoteCount ?? song.votes + 1));
       setSongs((prev) =>
         prev
           .map((s) =>
             s.songName === song.songName
-              ? { ...s, votes: result.data?.newVoteCount ?? s.votes + 1 }
+              ? { ...s, votes: newVotes }
               : s
           )
           .sort((a, b) => b.votes - a.votes)
@@ -80,7 +81,9 @@ export function Top10Voting() {
     setVotingFor(null);
   };
 
-  const maxVotes = Math.max(...songs.map((s) => s.votes), 1);
+  // Clamp all vote counts to valid non-negative numbers for display
+  const displaySongs = songs.map(s => ({ ...s, votes: Math.max(0, Math.round(s.votes)) }));
+  const maxVotes = Math.max(...displaySongs.map((s) => s.votes), 1);
 
   return (
     <section
@@ -140,7 +143,7 @@ export function Top10Voting() {
         </Reveal>
 
         <Reveal style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {songs.map((song, i) => {
+          {displaySongs.map((song, i) => {
             const hasVoted = voted.has(song.songName.toLowerCase());
             const isVoting = votingFor === song.songName;
             const votePercent = (song.votes / maxVotes) * 100;

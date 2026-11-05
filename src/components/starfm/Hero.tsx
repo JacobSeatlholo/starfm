@@ -342,6 +342,40 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Trust microcopy */}
+      <div
+        className="anim-up"
+        style={{
+          animationDelay: "0.5s",
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          flexWrap: "wrap",
+          justifyContent: "center",
+          marginTop: 32,
+          fontSize: "0.74rem",
+          color: "var(--muted)",
+        }}
+      >
+        <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--star-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+          </svg>
+          ICASA Licensed
+        </span>
+        <span style={{ color: "var(--border)" }}>·</span>
+        <span>On air since 2005</span>
+        <span style={{ color: "var(--border)" }}>·</span>
+        <span>11,000+ weekly listeners</span>
+        <span style={{ color: "var(--border)" }}>·</span>
+        <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--star-gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2L9.5 9.5H2l6.2 4.5-2.4 7.4L12 16.8l6.2 4.5-2.4-7.4L22 9.5h-7.5z" />
+        </svg>
+          100% community owned
+        </span>
+      </div>
     </section>
   );
 }

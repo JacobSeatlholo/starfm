@@ -112,15 +112,14 @@ export function Nav() {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <ul
             role="list"
+            className="nav-links-desktop"
             style={{
-              display: "none",
               listStyle: "none",
-              gap: 26,
+              gap: 22,
               alignItems: "center",
               margin: 0,
               padding: 0,
             }}
-            className="hidden lg:flex"
           >
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
@@ -193,8 +192,8 @@ export function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Tune in to Star FM live stream"
+            className="nav-tunein"
             style={{
-              display: "flex",
               alignItems: "center",
               gap: 7,
               background: "rgba(255,68,68,0.1)",
@@ -218,7 +217,6 @@ export function Nav() {
               e.currentTarget.style.background = "rgba(255,68,68,0.1)";
               e.currentTarget.style.transform = "scale(1)";
             }}
-            className="hidden sm:flex"
           >
             <span className="live-dot" />
             <span>{t("btn_tune_in")}</span>
@@ -229,8 +227,8 @@ export function Nav() {
             onClick={() => setOpen((v) => !v)}
             aria-label="Open navigation menu"
             aria-expanded={open}
+            className="nav-hamburger"
             style={{
-              display: "flex",
               flexDirection: "column",
               gap: 5,
               cursor: "pointer",
@@ -238,7 +236,6 @@ export function Nav() {
               background: "none",
               border: "none",
             }}
-            className="lg:hidden"
           >
             {[0, 1, 2].map((i) => (
               <span

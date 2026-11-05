@@ -292,7 +292,12 @@ export function Schedule() {
             overflow: "hidden",
           }}
         >
-          {WEEKLY_SCHEDULE[activeDay].slots.map((slot, i) => (
+          {WEEKLY_SCHEDULE[activeDay].slots.map((slot, i) => {
+            // Check if this slot is the currently airing show
+            const isCurrentShow = nowPlaying?.currentShow &&
+              nowPlaying.currentShow.showName === slot.show &&
+              nowPlaying.day === DAYS[activeDay];
+            return (
             <div
               key={i}
               style={{
@@ -305,15 +310,21 @@ export function Schedule() {
                     ? "1px solid var(--border)"
                     : "none",
                 transition: "background 0.2s",
+                background: isCurrentShow ? "rgba(53,189,4,0.06)" : "transparent",
+                borderLeft: isCurrentShow ? "3px solid var(--star-green)" : "3px solid transparent",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--panel2)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+              onMouseEnter={(e) => {
+                if (!isCurrentShow) e.currentTarget.style.background = "var(--panel2)";
+              }}
+              onMouseLeave={(e) => {
+                if (!isCurrentShow) e.currentTarget.style.background = "transparent";
+              }}
             >
               <div
                 style={{
                   fontFamily: "var(--font-syne-mono), monospace",
                   fontSize: "0.78rem",
-                  color: "var(--star-green)",
+                  color: isCurrentShow ? "var(--star-green)" : "var(--star-green)",
                   width: 56,
                   flexShrink: 0,
                   fontWeight: 700,
@@ -350,8 +361,31 @@ export function Schedule() {
                   {slot.lang}
                 </div>
               )}
+              {isCurrentShow && (
+                <div
+                  style={{
+                    fontFamily: "var(--font-syne-mono), monospace",
+                    fontSize: "0.56rem",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "#050A03",
+                    background: "var(--star-green)",
+                    padding: "3px 8px",
+                    borderRadius: 100,
+                    fontWeight: 700,
+                    flexShrink: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
+                  }}
+                >
+                  <span className="live-dot" style={{ width: 4, height: 4 }} />
+                  NOW
+                </div>
+              )}
             </div>
-          ))}
+            );
+          })}
         </Reveal>
       </div>
     </section>

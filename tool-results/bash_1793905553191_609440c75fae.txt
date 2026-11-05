@@ -1,0 +1,421 @@
+===== AUDIT-1 =====
+# Star FM Hero Section Analysis
+
+## 1) Trust Signals
+**Working:**
+- "24/7 LIVE FROM KLERKSDORP, NORTH WEST PROVINCE" badge with pulsing dot gives real-time credibility and local grounding
+- Frequency "102.9MHz" in logo reinforces it's a real broadcast station, not just an internet stream
+- "20 years" mark on logo implies longevity
+- "TUNE IN LIVE" button with red dot uses convention familiar from real radio sites
+
+**Hurting credibility:**
+- Red "1 Issue" badge (bottom left) is a dev/QA overlay left visible; instantly signals "unfinished site"
+- Logo is a low-resolution raster on a white rounded card that clashes with the dark theme; looks pasted, not integrated
+- The white card has a stray yellow star badge at the corner that reads as a notification glitch
+- Language toggles (EN/TN/ST) are tiny pills that look non-functional; "ST" and "TN" have no labels or context
+
+## 2) Visual Hierarchy
+**Working:**
+- Giant "Brighter. Smarter. Community Radio." headline dominates; the green "Community Radio" correctly gets emphasis
+- Focal flow is roughly: logo → badge → headline
+
+**Problems:**
+- The "stream player" is absent from view (or entirely below fold); for a radio site, the play button should be visible in the hero without scrolling
+- Logo card is a big white rectangle that out-competes the headline for initial attention
+- Headline takes so much vertical space that supporting copy ("We broadcast music, news...") gets cut off at the fold, leaving a dangling line
+- No clear second read after the headline
+
+## 3) Navigation Ease
+- Hamburger-only nav hides everything; new visitors can't see Shows, Schedule, Contact, Advertise
+- No visible "Listen Now" primary CTA in the content area; the only one is the small top-right button
+- The hero never states the one action the site exists for: press play
+- Language switcher order unclear; active state (EN) is subtle
+
+## 4) Memorable vs Forgettable
+**Memorable:**
+- Oversized typographic headline with the green accent on "Community Radio" is bold and on-brand
+- Faint radio-wave/soundwave background texture is a nice touch
+- Star motif (logo, yellow star) gives a visual signature
+
+**Forgettable / weak:**
+- The green-on-black palette is generic community-radio territory; the wave texture is too faint to register
+- The white logo card is the least designed element and it's the biggest visual object
+- Yellow star badge is an unexplained one-off
+
+## 5) Concrete Improvements
+1. **Put a real player in the hero**: a prominent play button + live indicator + now-playing track text directly under the headline. This is the #1 job of the page.
+2. **Remove the "1 Issue" badge** from production; it destroys trust immediately.
+3. **Rebuild the logo as a transparent/SVG version** on the dark background; drop the white rounded card and the floating yellow star badge.
+4. **Tighten headline size** so the tagline and a CTA fit within the first viewport; no orphaned text lines.
+5. **Replace hamburger-only nav** with visible links (Shows, Schedule, News, Contact) plus the hamburger for mobile, and make the EN/TN/ST switcher clearer (highlight active with fill, add a globe icon).
+6. **Make the live badge functional-looking**: add current show name and time, e.g. "LIVE: Morning Drive, 08:00–10:00".
+7. **Add subtle interactivity**: animate the soundwave texture to pulse with audio when playing; hover states on the language pills.
+8. **Add social proof microcopy**: listener count or "Serving Klerksdorp since 2005" under the tagline.
+9. **Give the TUNE IN LIVE button a filled treatment** (solid green or red) so it reads as primary, matching the play CTA below.
+10. **Consolidate CTA hierarchy**: one dominant "Play Live" action, one secondary "View Schedule", nothing else competing in the hero.
+
+===== AUDIT-2 =====
+# Star FM 102.9 – Studio Pulse Widget Analysis
+
+## 1) Trust Signals
+**Working:**
+- "Connected to Star FM studio operations" status line with live dot implies a real studio feed, not a static mock
+- Real show details (time slot 20:00–23:00, day, host name "Kabelo Modise") feel authored
+- Queue count (4 in queue) and total requests (7) suggest genuine listener activity
+- Language toggles (EN/TN/ST) ground it in a real South African audience
+- Consistent ON AIR / NOW PLAYING metadata reads like a broadcast system, not a template
+
+**Hurting credibility:**
+- Only 7 total requests reads as "nobody listens." Small live numbers can be more damaging than no numbers
+- The debug "1 Issue" pill in the corner instantly breaks the illusion of a polished product
+- No album art / cover image for "Wadibusa" makes the now-playing card feel empty
+
+## 2) Visual Hierarchy
+- Eye path is actually decent: show title (largest, bold) → ON AIR badge → now playing card → stats
+- Problem: the "NOW PLAYING" card competes with the title rather than supporting it; the equalizer bars, label, and two-line track info create a mini-cluster of similar visual weights
+- The stats (4 / 7) are styled differently (green vs yellow) for no apparent reason, adding noise
+- The bottom fixed player bar (equalizer + "Listen") is nearly invisible against the dark background and duplicates the "TUNE IN LIVE" button in the header
+- "Connected to Star FM studio operations" sits in dead space; it's a trust element but reads like a footnote
+
+## 3) Navigation Ease
+- Good: "TUNE IN LIVE" is an obvious, colored, top-right CTA
+- Bad: a new visitor must choose between "TUNE IN LIVE" (header) and "Listen" (bottom bar) with no explanation of the difference, if any
+- The hamburger-only nav gives zero preview of site sections
+- Language toggles are unlabeled for first-timers (TN? ST?) — a tooltip would fix this
+- The stats (in queue / requests) imply an interactive request system, but nothing is clickable — dead-end affordance
+
+## 4) Memorable Design Elements
+**Memorable:**
+- Acid-green marquee ticker ("COMMUNITY FIRST • TECH FOR THE TOWNSHIP…") is the strongest brand moment; distinct and ownable
+- The chunky display font used for "AfroBeats & Chill" and the giant stats (11K+, 102.9, 24/7) has strong personality
+- Broadcast-console aesthetic (ON AIR pill, EQ bars) fits the medium perfectly
+
+**Forgettable:**
+- The now-playing card itself is generic; no art, no progress bar, no "up next"
+- Stats section is just huge numbers on flat dark cards; big type alone isn't a design system
+- Bottom player bar is forgettable precisely where it matters most
+
+## 5) Concrete Improvements
+1. **Remove the debug "1 Issue" pill** in production; nothing else on this list matters while it's visible
+2. **Add album art** (50–60px square) to the now-playing card, plus a thin progress bar and "Up Next: [track]" line — instantly makes the widget feel live
+3. **Consolidate the play CTAs**: keep one primary "Listen Live" button (header or persistent bottom bar, not both); style the bottom bar with a subtle top border/glass background so it doesn't vanish
+4. **Make queue/request stats honest or hide them**: either frame as "Request line open" / show per-show stats, or drop "TOTAL REQ: 7" which undercuts credibility
+5. **Make stats clickable**: "4 IN QUEUE" should open the request list or a "Request a song" action; currently it's a dead affordance
+6. **Tighten the now-playing card hierarchy**: smaller "NOW PLAYING" label, larger track name, dimmer artist line — one clear reading order
+7. **Add tooltips or full labels to EN/TN/ST** (e.g., "Setswana") for first-time visitors
+8. **Add hover/press states to the ON AIR badge and stats** — everything currently feels static; micro-interactions (pulsing EQ synced to playback, live dot pulse) would sell "live" cheaply
+9. **Unify stat number colors** (green AND yellow reads arbitrary); reserve yellow for a single semantic meaning like "you" or "action"
+10. **Anchor the "Connected to studio operations" status** inside the widget card as a subtle footer line with the EQ icon, so the trust signal travels with the widget instead of floating in empty space
+
+===== AUDIT-3 =====
+# Star FM 102.9 Weekly Schedule Review
+
+## 1) Trust Signals
+**Working:**
+- Specific details build credibility: real host name (Kabelo Modise), actual frequencies, 102.9 Klerksdorp lockup in header
+- Language badges (EN/TN/ST) feel authentically South African and professionally considered
+- Live "ON AIR" indicator with timestamp (20:00 · Thursday) reads like a real station, not a mockup
+
+**Hurting credibility:**
+- The red "1 Issue ×" dev overlay badge in the bottom-left is a dev/debug artifact. Nothing screams "unfinished" louder
+- Cropped "Listen Now" text under the bottom-left avatar suggests a broken/truncated component
+- Only Monday has content in this view's featured panel while the schedule shows Thursday's slot (20:00 AfroBeats) — the mismatch between tab state and data will confuse users
+
+## 2) Visual Hierarchy
+**Working:**
+- "AfroBeats & Chill" is the clear hero — biggest type, strong display font
+- Green active tab (MON) pops against dark pills
+- Green time labels create a scannable left column rhythm
+
+**Problems:**
+- Three competing "live/now" signals: "LIVE" chip in intro text, "ON AIR" banner, and equalizer icon above tabs — the eye bounces
+- The "ON AIR" banner sits *between* the intro copy and the show name, breaking the reading flow
+- In schedule rows, show titles and language badges have similar visual weight; times don't clearly lead the eye
+- The equalizer animation above the tabs floats with no container or label
+
+## 3) Navigation Ease
+- Day tabs: yes, a new visitor gets it immediately — good
+- BUT: no indication other days have different/fewer shows; no count per day ("FRI · 4 shows") to reward clicking
+- "TUNE IN LIVE" (header) vs "Listen" (bottom bar) — two CTAs, unclear which does what
+- No "now playing" highlight in the list itself — the current show (20:00) looks identical to every other row
+- Rows aren't obviously interactive (if they are clickable). No hover affordance visible, no chevron
+
+## 4) Memorable vs Forgettable
+**Memorable:**
+- Chunky retro display typeface for "AfroBeats & Chill" — distinctive, on-brand
+- Green-on-black with animated equalizer bars — good radio energy
+- Monospaced micro-labels ("WEEKLY LINE-UP", "20:00 · Thursday") give a broadcast-console feel
+
+**Forgettable:**
+- Schedule rows are generic bordered lists — could be any site
+- Right-aligned language pills feel like metadata, not design
+- The intro copy is text-only; large empty dark areas left and right feel wasted
+- Bottom green strip is a dead zone
+
+## 5) Concrete Improvements
+
+1. **Remove the "1 Issue" dev badge** — or ship a hide-on-production rule. Single highest-impact fix.
+2. **Highlight the current row**: give the 20:00 "AfroBeats & Chill" row a green left border, subtle tint, and a "NOW" badge so the list and the ON AIR panel agree.
+3. **Merge live signals into one**: keep the ON AIR banner, drop the floating "LIVE" chip from the paragraph, and attach the equalizer to the banner instead of floating above tabs.
+4. **Move the ON AIR panel above the intro text** (or into a sidebar on desktop) so hierarchy is: NOW → tabs → full list.
+5. **Add per-day affordance to tabs**: show counts or a dot for days with specials, e.g. "FRI" with a small superscript "5".
+6. **Hover states on rows**: subtle background lift + play icon appearing on the right; make the whole row a tap target.
+7. **Show end times**: "06:00 – 09:00" instantly communicates duration and scannability.
+8. **Consolidate play CTAs**: make the bottom-right "Listen" button the persistent player and remove/rename "TUNE IN LIVE" to avoid duplicate actions.
+9. **Fill desktop whitespace**: two-column layout — sticky "ON AIR NOW" card (with host photo) on the left, scrollable day schedule on the right.
+10. **Add a duration progress bar** inside the ON AIR card (e.g. thin green bar showing 20:00–23:00 progress). Pure UI, hugely "live radio" feeling.
+
+===== AUDIT-4 =====
+# Star FM Top 10 Voting Chart - Analysis
+
+## 1) Trust Signals
+**Working:**
+- Clear rules stated up front ("Vote once per song per week. Chart resets every Monday at 00:00") — this reads as transparent and legitimate
+- Live vote counts imply real-time, honest data
+- Real artist/song names (Wadibusa, Tanzania, Uncle Waffles) ground it in reality
+- Branded header with logo and frequency (102.9 Klerksdorp) adds station credibility
+
+**Hurting trust:**
+- **Vote count of "-2206797400000" on row 2 is a dealbreaker.** That's clearly a raw timestamp/epoch bug leaking into the UI. Nothing destroys credibility faster. Fix before anything else.
+- The broken-image icon (🇿) in the "STAR FM TOP 10" eyebrow label looks unfinished
+- "1 Issue" badge bottom-left appears to be a dev/debug overlay shipped to production
+- Vote count "0" on the #1 song alongside a full-looking progress bar is contradictory
+
+## 2) Visual Hierarchy
+**Working:**
+- Bright green VOTE buttons are the strongest visual element — correctly the primary action
+- Numbered rank badges (gold #1) create instant scannability
+- Good contrast between song titles (bold) and artist names (muted)
+
+**Hurting:**
+- Three lines of near-identical body copy above the chart ("Vote for the Top 10 / Vote once per song... / Live vote counts...") compete with each other and dilute the entry point. Should be one heading + one subline.
+- Huge dead black space between the "Digital Futures" section and the chart breaks the page in two
+- The equalizer animation at the bottom center is visually loud but means nothing
+- Progress bars are ambiguous: full bar = most votes? The ratio of bar length to number is unclear
+
+## 3) Navigation Ease
+**Working:**
+- A new visitor could figure out "press the green button to vote" in about 2 seconds
+- Language switcher (EN/TN/ST) and TUNE IN LIVE are findable in the header
+
+**Hurting:**
+- The "Top 10" link in the intro text is orange and underlined but appears to link to the section you're already in — circular
+- No indication of how many total entries exist, or whether the list scrolls
+- The hamburger menu is the only navigation affordance; no breadcrumbs or section context for someone landing here directly
+- No feedback on what happens after clicking VOTE (disabled state? confirmation?) — unknown outcome = hesitation
+
+## 4) Memorable vs Forgettable
+**Memorable:**
+- Terminal/code-style green aesthetic is distinctive and cohesive with the station's brand
+- The gold #1 rank badge
+- The glowing VOTE buttons
+
+**Forgettable:**
+- The enormous empty dark gap in the middle of the page
+- The "This Week on Digital Futures" card is visually disconnected from everything
+- Rows 2 through 10 presumably look identical to each other; nothing differentiates ranks 2/3 from 4–10
+
+## 5) Concrete Improvements
+1. **Fix the vote count bug immediately.** Clamp/round displayed counts to integers ≥ 0. This alone is 50% of the credibility problem.
+2. **Remove the "1 Issue" debug badge** and the broken emoji/image in the "STAR FM TOP 10" label; replace with a real trophy or chart icon.
+3. **Compress the three intro sentences into two:** a heading "Star FM Top 10" plus one line: "One vote per song per week. Resets Monday 00:00. You decide what gets played."
+4. **Show vote feedback states:** on click, button becomes "VOTED ✓" (disabled, dimmed) and the count increments with a subtle pulse animation. Immediate confirmation.
+5. **Sort/refresh clarity:** add a small "Updated just now" timestamp or "Live" pulse dot next to "Live vote counts update automatically."
+6. **Differentiate the top 3:** slightly taller rows or gold/silver/bronze rank badges; ranks 4–10 stay flat. Creates aspiration and scannability.
+7. **Kill or reposition the floating equalizer animation** — it suggests audio is playing when it isn't. If it's decorative, tie it to the currently-playing track only.
+8. **Add album art thumbnails** per row (even 48px squares) — music charts without imagery feel like spreadsheets.
+9. **Reduce the dead vertical space** between sections; either pull the chart up or insert a slim divider with "Now Playing" info.
+10. **Add a sticky mini-header or back-to-top link** if the chart has 10+ entries, so voters can reach the VOTE buttons context without losing their place.
+
+===== AUDIT-5 =====
+# Star FM "Get Involved" Section Analysis
+
+## 1) Trust Signals
+**Working:**
+- Language switcher (EN/TN/ST) signals genuine local, multilingual community focus
+- "102.9 KLERKSDORP" under the logo grounds it in a real place
+- Persistent "TUNE IN LIVE" button + live indicator implies a real broadcast happening now
+- Specific, locally-relevant copy (tender opportunities, SMME resources, bursary alerts) reads as authentic, not stock
+
+**Hurting credibility:**
+- The generic line icons (briefcase, music note, heart, globe) feel like a template; the music note under "Economic Empowerment" and heart under "Social Cohesion" don't semantically match
+- "A New Model for Radio" paragraph reads like an investor pitch, not community copy. It breaks voice and feels slightly AI-generated
+- No names, faces, schedule times, or frequencies repeated in the body copy
+- The red "1 Issue" debugging badge (bottom left) is visible in production. Instantly destroys polish
+
+## 2) Visual Hierarchy
+**Problems:**
+- This appears to be a 2-column grid collapsed/squeezed into a single narrow left column, leaving ~60% of the width as dead black space. The eye has nowhere to go except down a monotone list
+- Icon sits *above* each heading (and after the previous description), so icon/heading/description rhythm feels scrambled
+- All 5 items have identical weight. Nothing is the "start here" item
+- The "WIN WITH STAR FM" section finally introduces a different treatment (eyebrow line + FEATURED tag) but it's mostly below the fold
+- Body text (~13px, low contrast gray) is harder to read than the headings by too large a margin
+
+## 3) Navigation Ease
+- A new visitor sees 5 descriptions of programming themes but **zero actions**. No "Listen to the Education show," no "Apply for a bursary," no links at all
+- The section title "GET INVOLVED" isn't visible in frame; without it, this reads as "About Our Programming"
+- The only clickable-looking things (TUNE IN LIVE, Listen) are global, not section-specific
+- A user's likely question, "How do I actually participate?" is unanswered
+
+## 4) Memorable vs Forgettable
+**Memorable:**
+- Neon green on near-black is a strong, ownable identity
+- The animated equalizer bars in the player bar are a nice "radio is alive" touch
+- Monospace green eyebrow ("WIN WITH STAR FM") has personality
+
+**Forgettable:**
+- The 5-item list itself: undifferentiated, icon-less personality, no imagery of actual people or studio
+- Vast empty right column makes the page feel unfinished rather than minimal
+
+## 5) Concrete 10x Improvements
+1. **Fix the layout bug**: restore the intended 2-column card grid (2x2 + full-width last card) so space is used and scanability returns
+2. **Add one CTA per card**: e.g. "See the school schedule →", "Browse tender alerts →". Even dead-end anchors beat nothing
+3. **Fix icon placement**: icon left of heading (or inline), consistently. Swap mismatches (heart → handshake/people for Social Cohesion; briefcase works for Economic)
+4. **Delete or rewrite "A New Model for Radio"**: it's funder-speak. Replace with a listener-facing line, or move it to a dedicated partner/sponsor page
+5. **Differentiate the primary pathway**: give one card (e.g. "Get on air" or Competitions) a green border/filled state and larger size
+6. **Right-align the empty space with proof**: put a studio photo, presenter headshots, or "On air now: [show name]" panel in the dead column
+7. **Increase body copy to 15-16px and bump contrast** from ~#6b7 to ~#9ab for readability
+8. **Remove the "1 Issue" debug badge** before shipping
+9. **Move the FEATURED competitions card higher** or give it a stronger visual (prize image, countdown) since it's the most actionable item
+10. **Add hover states**: card lift/border glow in the existing green so the section feels interactive, not static text
+
+===== AUDIT-6 =====
+# Star FM 102.9 – Contact Page Review
+
+## 1) Trust Signals
+**Working:**
+- Real, specific details: street-level location, exact frequency, real email domain, external stream link (famcast.co.za) all scream "legitimate local station"
+- "We read every single one and we reply fast" sets a human, accountable tone
+- WhatsApp CTA is highly credible for a South African audience
+
+**Hurting credibility:**
+- No response-time promise in concrete terms ("within 24 hours")
+- No names, faces, or studio photos anywhere visible
+- The red "1 Issue" debug/error badge in the corner looks broken and amateur; kill it on production
+- "Live Stream" entry is a plain URL, not an obviously clickable styled link
+
+## 2) Visual Hierarchy
+**Problems:**
+- No clear primary action. "Chat on WhatsApp," the form, and the info blocks compete at equal weight
+- The contact form fields are squeezed below the fold and feel like an afterthought
+- Info blocks (Location/Frequency/Stream/Email) are stacked vertically in a single narrow column, wasting the entire right half of a huge empty page
+- Tiny monospace labels ("SAY HELLO", "FULL NAME") are subtle to the point of being missed
+
+**What works:**
+- The WhatsApp card is the only element with a container/contrast, so the eye does land there first (probably correctly, given the audience)
+
+## 3) Navigation Ease
+- Header is clean: language toggle + TUNE IN LIVE is clear, though the hamburger-only nav hides everything else
+- A first-time visitor understands the page purpose quickly ("Let's talk") but must scroll to learn a form even exists
+- Language toggle (EN/TN/ST) placement is good and a nice localization touch
+- Bottom "Listen" pill duplicates the top TUNE IN LIVE button, which is fine, but it overlaps content when scrolling
+
+## 4) Memorable vs Forgettable
+**Memorable:**
+- Consistent neon-green-on-black station identity
+- "sawubona" copy moment is warm and locally authentic
+- Animated equalizer in the sticky player bar is on-brand
+
+**Forgettable:**
+- Four identical icon+label rows blur together; none of the icons are tinted or differentiated
+- Generic copy ("Let's talk.") could belong to any site
+- No map, no studio imagery, nothing visual about the station itself
+
+## 5) Concrete Improvements
+1. **Two-column layout:** contact info + WhatsApp card on the left, full form on the right so it's visible without scrolling
+2. **Remove the "1 Issue" badge** before it ships; nothing erodes trust faster
+3. **Differentiate links:** make the stream URL and email actual underlined/arrow links, not gray text
+4. **Add a visible primary button** ("Send Message") early or a sticky form CTA; right now the form's submit is off-screen
+5. **Tighten the info blocks** into a compact 2×2 grid to reduce scroll depth by half
+6. **Add a "we reply within X hours" microcopy** under the WhatsApp card
+7. **Show field count upfront** ("3 fields, 30 seconds") to reduce form abandonment
+8. **Give the eye one anchor:** bump "Say hello" into a proper heading size so the page reads headline → info → action
+9. **Add hover/focus states** with the brand green on inputs so the form feels alive
+10. **Make the "Live Stream" row open the stream** on click instead of displaying a URL
+
+===== AUDIT-7 =====
+## Footer Analysis: Star FM 102.9
+
+### 1) Trust Signals
+**Credible:**
+- Full brand lockup (logo + "102.9 KLERKSDORP") with consistent green identity
+- Concrete mission statement with real facts: "102.9 MHz, Dr Kenneth Kaunda District" signals a genuine local broadcaster, not a template
+- Structured link categories (Station / Community / Resources) suggest editorial care
+- Persistent "Listen" bar with live equalizer animation implies a real, functioning stream
+
+**Amateur:**
+- No contact info, physical address, or operating hours in the footer (critical for a community station)
+- No social proof: no listener counts, SABC/ICASA licensing mention, or community affiliations
+- Second duplicated logo at top of footer looks like an accidental render, not a design choice
+- Footer links appear cut off ("AI Literacy" is the last visible item; no copyright/legal line shown)
+
+### 2) Visual Hierarchy
+**Weak points:**
+- Massive dead space: content occupies only the left ~35% of a very wide canvas; the right two-thirds is empty black. The eye has nowhere to go after the description paragraph
+- All links have identical weight, size, and color; category headers (STATION, COMMUNITY) are only slightly brighter, so links blur into an undifferentiated list
+- The social icons (Facebook, phone, play, phone-again?) are small, dim, and compete with each other. Two icons look like phone/handset variants, which is confusing
+- The bottom player bar (equalizer + Listen button) actually has the strongest contrast, which is good, but it's cut off by the screenshot edge
+
+**Works:**
+- Green on near-black is on-brand; the green "Listen" pill is a clear focal point
+- Letter-spaced uppercase section headers are a decent grouping device
+
+### 3) Navigation Ease
+- **Good:** "Listen Live" appears in both the link list and the sticky player; a new visitor cannot miss how to tune in
+- **Bad:** No way to tell current page or hover affordance; links are low-contrast gray (~3:1 likely fails WCAG AA)
+- "HustlePortal" and "Top 10 Voting" are intriguing but unexplained; one-line descriptions or icons would help
+- No search, no newsletter/WhatsApp signup, which is how community radio audiences actually engage
+- Footer doesn't show where it ends; missing legal/contact row makes it feel unfinished rather than navigable
+
+### 4) Memorable vs Forgettable
+**Memorable:**
+- The animated green equalizer in the bottom bar is the best element; it says "this station is alive right now"
+- Sticky player with a prominent green Listen button is a strong, on-brand pattern
+- The TUNE IN LIVE red-dot badge in the header (partially visible) is a nice "on air" cue
+
+**Forgettable:**
+- The entire middle/right of the footer: vast empty black nothing
+- Generic stacked text links with no icons, thumbnails, or personality
+- Social icon row is too subtle to register
+
+### 5) Concrete 10x Improvements
+1. **Use the empty space:** move to a 3-4 column footer grid. Left: brand + blurb + socials. Then the three link columns side by side. Right column: contact block (phone number, WhatsApp line, studio address, on-air hours).
+2. **Add a "Studio & Contact" block:** phone number as a tappable `tel:` link, WhatsApp number (huge for SA audiences), physical address, and hours ("On air 6am-10pm"). This is the single biggest credibility win.
+3. **Fix the duplicate logo:** keep one logo instance at the footer top.
+4. **Raise link contrast** to at least #9CA3AF-level gray, and add hover states (green text + slight left-arrow or underline slide) so links feel interactive.
+5. **Add a footer bottom bar:** copyright line, "Powered by..." if applicable, Privacy/Terms, and language switch repeated. It anchors the page visually so the footer doesn't feel cut off.
+6. **Upgrade the social row:** label the icons or add tooltips; dedupe the two phone-like icons; consider adding WhatsApp and YouTube icons explicitly, since those matter most for this audience.
+7. **Add a mini "Now On Air" card** in the empty right area: current show name, presenter avatar, live equalizer, and Listen button. This turns dead space into the footer's hero moment and reuses the equalizer motif.
+8. **One-line descriptions under ambiguous links** ("HustlePortal: jobs and gigs for youth") to convert curiosity into clicks.
+9. **Add a WhatsApp/newsletter signup field** ("Get the Top 10 in your inbox weekly") in the footer, single input + green button, matching the Listen button style.
+10. **Tighten vertical rhythm:** reduce the huge gaps between link items (~48px looks like default stacking error); 12-16px between links, 32-40px between sections.
+
+===== AUDIT-8 =====
+# Mobile View Analysis: Star FM 102.9
+
+## 1) Trust Signals
+- **Strong:** Professional logo with 20-year anniversary mark ("20" badge), consistent green branding, "24/7 LIVE FROM KLERKSDORP" ticker adds legitimacy, clear geographic identity (Dr Kenneth Kaunda District, Matlosana).
+- **Weakens trust:** "TUNE IN L" is cut off in the header (truncated text looks unfinished/broken). Language pills (EN/TN/ST) are tiny and ambiguous. No contact info, frequency confirmation in footer, or "On Air Now" personality/staff visible on this screen.
+
+## 2) Visual Hierarchy
+- **Works:** Big hero logo → tagline ticker → giant headline → supporting paragraph → two CTAs. The vertical flow is logical.
+- **Problems:** The oversized headline "Community Radio." overflows the viewport width (the "C" and "y" are clipped) which reads as a bug, not a style choice. The glowing yellow star badge on the logo card draws the eye away from everything. Two competing greens (headline green vs. button green) split attention. The "1 Issue" error badge bottom-left is the single highest-contrast element on screen, dominating everything.
+
+## 3) Navigation Ease
+- **Good:** "Tune In Live" + "Our Mission →" is a clear primary/secondary CTA pair; new visitor instinct is correct.
+- **Problems:** Header is overloaded: logo + 3 language toggles + truncated "TUNE IN LIVE" button crammed into one row, all fighting for attention. No menu/hamburger visible, so a visitor can't discover shows, schedule, or contact. Duplicate "Tune In" actions (header + hero) with no visual differentiation of purpose. The fixed "1 Issue" chip obscures the primary CTA.
+
+## 4) Memorable Design Elements
+- **Memorable:** The retro Star FM logo with skyline/city illustration inside the glowing white card, the bold three-line "Brighter. Smarter. Community Radio." rhythm, and the dark-green "on air" ticker aesthetic.
+- **Forgettable:** The body paragraph (plain, small, low contrast), the generic rounded pill buttons, and the header buttons which look like unstyled defaults.
+
+## 5) Concrete Improvements
+1. **Fix the clipped headline:** reduce font-size or apply proper wrapping so "Community Radio." fits within viewport; oversized text must never be cut off.
+2. **Fix or hide the truncated "TUNE IN L" header button**; either shorten the label to "LIVE" with a pulsing red dot, or move the full label to the hero CTA only (removing duplication).
+3. **Remove or fix the "1 Issue" badge** before launch; nothing should overlap the primary "Tune In Live" button.
+4. **Collapse language toggles (EN/TN/ST) into a single dropdown/segmented control** to declutter the header; add a hamburger menu so content is discoverable.
+5. **Add a persistent mini player** (play button + "ON AIR" indicator) docked at the bottom, so tuning in is always one tap away without scrolling.
+6. **Add an "On Air Now: [Show Name]" line** with current time under the ticker, the strongest credibility signal a radio site can have.
+7. **Tighten the paragraph:** bold only the tagline (already done), but increase body size to ~16–17px and bump contrast from the dim gray for readability in sunlight.
+8. **Differentiate the two CTAs more clearly:** filled green "Tune In Live" with a play icon; outline "Our Mission" is fine, just add a subtle hover/active state and match corner radii to the logo card.
+9. **Reduce the yellow star glow** on the logo card or make it an intentional "20 years" tooltip/badge so it reads as a feature, not decoration.

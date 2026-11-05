@@ -339,3 +339,29 @@ body::after {
   border-radius: 2px;
   animation: freq-bar 0.8s infinite ease-in-out;
 }
+
+/* ── RESPONSIVE NAV ─────────────────────────────────────────────── */
+.nav-links-desktop {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .nav-links-desktop {
+    display: flex;
+  }
+}
+.nav-hamburger {
+  display: flex;
+}
+@media (min-width: 1024px) {
+  .nav-hamburger {
+    display: none;
+  }
+}
+.nav-tunein {
+  display: none;
+}
+@media (min-width: 640px) {
+  .nav-tunein {
+    display: flex;
+  }
+}
