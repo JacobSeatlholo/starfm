@@ -764,6 +764,75 @@ function markSelectedAsSkipped() {
 }
 
 // ════════════════════════════════════════════════════════════════════
+// FIX: Re-write Top 10 votes as proper numbers
+// Run this ONCE if votes appear as weird dates/negative numbers
+// ════════════════════════════════════════════════════════════════════
+function fixTop10Votes() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(TABS.TOP10);
+  if (!sheet) {
+    Logger.log('Top10 tab not found');
+    return;
+  }
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) {
+    Logger.log('No songs in Top10');
+    return;
+  }
+  // Read current votes, convert from dates if needed
+  const voteRange = sheet.getRange(2, 4, lastRow - 1, 1); // col 4 = votes
+  const votes = voteRange.getValues();
+  const tz = Session.getScriptTimeZone();
+  const epoch = new Date(1899, 11, 30); // Dec 30, 1899 local
+  const fixedVotes = [];
+  let fixedCount = 0;
+  for (let i = 0; i < votes.length; i++) {
+    let v = votes[i][0];
+    if (v instanceof Date) {
+      // Convert date back to number (days since 1899-12-30)
+      const voteDate = new Date(v.getFullYear(), v.getMonth(), v.getDate());
+      const diffDays = Math.round((voteDate.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24));
+      fixedVotes.push([diffDays]);
+      fixedCount++;
+    } else if (typeof v === 'number') {
+      fixedVotes.push([v]);
+    } else {
+      // Try to parse as number
+      const n = Number(v);
+      fixedVotes.push([isNaN(n) ? 0 : n]);
+    }
+  }
+  // Write back as numbers, set number format
+  voteRange.setValues(fixedVotes);
+  voteRange.setNumberFormat('0');
+  Logger.log(`✓ Fixed ${fixedCount} date-formatted vote values to numbers`);
+  SpreadsheetApp.getActiveSpreadsheet().toast(`✓ Fixed ${fixedCount} vote values`, 'Top 10 Fixed', 5);
+}
+
+// ════════════════════════════════════════════════════════════════════
+// FIX: Re-write schedule times as text (not dates)
+// ════════════════════════════════════════════════════════════════════
+function fixScheduleTimes() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(TABS.SCHEDULE);
+  if (!sheet) return;
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return;
+  const tz = Session.getScriptTimeZone();
+  // Read startTime (col 2) and endTime (col 3)
+  const range = sheet.getRange(2, 2, lastRow - 1, 2);
+  const values = range.getValues();
+  const fixed = values.map(row => row.map(v => {
+    if (v instanceof Date) {
+      return Utilities.formatDate(v, tz, 'HH:mm');
+    }
+    return String(v);
+  }));
+  range.setValues(fixed);
+  range.setNumberFormat('@'); // text format
+  Logger.log('✓ Fixed schedule times to text format');
+  SpreadsheetApp.getActiveSpreadsheet().toast('✓ Fixed schedule times', 'Schedule Fixed', 5);
+}
+
+// ════════════════════════════════════════════════════════════════════
 // Custom menu for studio operations (appears when opening the sheet)
 // ════════════════════════════════════════════════════════════════════
 function onOpen() {
@@ -772,6 +841,9 @@ function onOpen() {
     .addItem('✅ Mark as Played', 'markSelectedAsPlayed')
     .addItem('📋 Mark as Queued', 'markSelectedAsQueued')
     .addItem('⏭️ Mark as Skipped', 'markSelectedAsSkipped')
+    .addSeparator()
+    .addItem('🔧 Fix Top 10 Votes (run once)', 'fixTop10Votes')
+    .addItem('🔧 Fix Schedule Times (run once)', 'fixScheduleTimes')
     .addSeparator()
     .addItem('🔄 Run Setup (Initialise)', 'setup')
     .addItem('📊 Reset Top 10 (New Week)', 'resetTop10Weekly')

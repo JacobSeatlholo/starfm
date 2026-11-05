@@ -96,14 +96,18 @@ function coerceTime(val: unknown): string {
 function coerceNumber(val: unknown): number {
   if (typeof val === "number") return val;
   if (typeof val === "string") {
-    // Extract number from date strings like "1900-02-14T22:30:00.000Z"
+    // If it's a date string like "1900-02-14T22:30:00.000Z"
     if (val.includes("T")) {
       const d = new Date(val);
       // Google Sheets stores numbers as days since 1899-12-30
       // Votes like 47 would be stored as 47 days = 1900-02-15
-      const epoch = new Date("1899-12-30T00:00:00.000Z");
-      const diffDays = (d.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24);
-      return Math.round(diffDays);
+      // The timezone matters: Sheets uses the script's timezone (Africa/Johannesburg = UTC+2)
+      // Parse as local date at midnight to get the correct day count
+      const epoch = new Date("1899-12-30T00:00:00");
+      const voteDate = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+      const epochDate = new Date(epoch.getFullYear(), epoch.getMonth(), epoch.getDate());
+      const diffDays = Math.round((voteDate.getTime() - epochDate.getTime()) / (1000 * 60 * 60 * 24));
+      return diffDays;
     }
     return Number(val) || 0;
   }
