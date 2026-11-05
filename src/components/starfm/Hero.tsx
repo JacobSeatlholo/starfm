@@ -47,7 +47,7 @@ export function Hero() {
         </svg>
       </div>
 
-      {/* Logo — the star of the show, in a floating white card */}
+      {/* Logo, the star of the show, in a floating white card */}
       <div
         className="anim-up"
         style={{
@@ -92,7 +92,7 @@ export function Hero() {
           </div>
           <img
             src="/starfm-logo-full.png"
-            alt="Star FM 102.9 — For The Brighter Side Of You"
+            alt="Star FM 102.9, For The Brighter Side Of You"
             width={260}
             height={184}
             style={{

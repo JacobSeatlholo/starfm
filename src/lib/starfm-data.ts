@@ -1,4 +1,4 @@
-// Star FM 102.9 — all station content data
+// Star FM 102.9, all station content data
 // Sourced from the original site + research-driven additions
 
 export const STATION = {
@@ -13,7 +13,7 @@ export const STATION = {
   domain: "starfmradio.co.za",
   streamUrl: "https://famcast.co.za/q/stations/star-fm/",
   facebook: "https://web.facebook.com/OfficialStarfm1029",
-  whatsapp: "https://wa.me/27600000000", // placeholder — replace with real number
+  whatsapp: "https://wa.me/27600000000", // placeholder, replace with real number
   // Famcast Android app
   appUrl: "https://play.google.com/store/apps/details?id=com.famcast.starfm",
   coverage: [
@@ -29,10 +29,10 @@ export const STATION = {
 
 // ── IMPACT STATS ──────────────────────────────────────────────────
 export const IMPACT = [
-  { num: "11K+", label: "Facebook community followers — growing every day" },
-  { num: "102.9", label: "MHz — your frequency across Klerksdorp & Matlosana" },
-  { num: "24/7", label: "Live broadcasting — every hour, every day, no pauses" },
-  { num: "65km", label: "From Johannesburg — heartbeat of the Southern District" },
+  { num: "11K+", label: "Facebook community followers, growing every day" },
+  { num: "102.9", label: "MHz, your frequency across Klerksdorp & Matlosana" },
+  { num: "24/7", label: "Live broadcasting, every hour, every day, no pauses" },
+  { num: "65km", label: "From Johannesburg, heartbeat of the Southern District" },
 ] as const;
 
 // ── TICKER ────────────────────────────────────────────────────────
@@ -63,14 +63,14 @@ export const SHOWS: Show[] = [
     name: "Morning Drive",
     host: "Wake up with the community",
     tag: "Daily",
-    desc: "Wake up with the community — news, music, and everything Klerksdorp needs to start the day right. Local traffic, school updates, and the stories shaping your morning.",
+    desc: "Wake up with the community, news, music, and everything Klerksdorp needs to start the day right. Local traffic, school updates, and the stories shaping your morning.",
   },
   {
     time: "09:00",
     name: "Tech Talk",
     host: "Digital tips for everyday life",
     tag: "Tech",
-    desc: "Digital tips, app guides and tech news explained in plain language — no jargon, just useful. From WhatsApp Business to mobile banking, we make technology work for you.",
+    desc: "Digital tips, app guides and tech news explained in plain language, no jargon, just useful. From WhatsApp Business to mobile banking, we make technology work for you.",
   },
   {
     time: "12:00",
@@ -91,14 +91,14 @@ export const SHOWS: Show[] = [
     name: "Digital Futures",
     host: "AI, technology & what's coming next",
     tag: "AI",
-    desc: "AI, technology and what's coming next — explained in plain language for every listener. We break down the tools reshaping jobs, education, and daily life in South Africa.",
+    desc: "AI, technology and what's coming next, explained in plain language for every listener. We break down the tools reshaping jobs, education, and daily life in South Africa.",
   },
   {
     time: "20:00",
     name: "AfroBeats & Chill",
     host: "Culture, music & the African story",
     tag: "Music",
-    desc: "Culture, music and the African story — celebrating who we are and where we're going. Amapiano, AfroBeats, soul, and the sounds moving the continent forward.",
+    desc: "Culture, music and the African story, celebrating who we are and where we're going. Amapiano, AfroBeats, soul, and the sounds moving the continent forward.",
   },
 ];
 
@@ -142,7 +142,7 @@ export const WEEKLY_SCHEDULE: ScheduleDay[] = [
       { time: "09:00", show: "Tech Talk", lang: "EN" },
       { time: "12:00", show: "Lunch With The Nation", lang: "EN/TN/ST" },
       { time: "15:00", show: "Youth Hustle Hour", lang: "EN" },
-      { time: "18:00", show: "Digital Futures — Live Workshop", lang: "EN" },
+      { time: "18:00", show: "Digital Futures, Live Workshop", lang: "EN" },
       { time: "20:00", show: "AfroBeats & Chill", lang: "Music" },
     ],
   },
@@ -165,9 +165,9 @@ export const WEEKLY_SCHEDULE: ScheduleDay[] = [
       { time: "06:00", show: "Morning Drive", lang: "EN/TN" },
       { time: "09:00", show: "Tech Talk", lang: "EN" },
       { time: "12:00", show: "Lunch With The Nation", lang: "EN/TN/ST" },
-      { time: "15:00", show: "Youth Hustle Hour — Friday Flex", lang: "EN" },
+      { time: "15:00", show: "Youth Hustle Hour, Friday Flex", lang: "EN" },
       { time: "18:00", show: "Friday Night Live", lang: "Music" },
-      { time: "20:00", show: "AfroBeats & Chill — Weekend Warm-up", lang: "Music" },
+      { time: "20:00", show: "AfroBeats & Chill, Weekend Warm-up", lang: "Music" },
     ],
   },
   {
@@ -177,7 +177,7 @@ export const WEEKLY_SCHEDULE: ScheduleDay[] = [
       { time: "07:00", show: "Weekend Breakfast", lang: "EN/TN" },
       { time: "10:00", show: "Community Voices", lang: "EN/TN/ST" },
       { time: "13:00", show: "Saturday Sports Desk", lang: "EN" },
-      { time: "16:00", show: "The Hive — Youth Show", lang: "EN" },
+      { time: "16:00", show: "The Hive, Youth Show", lang: "EN" },
       { time: "19:00", show: "Saturday Night Mix", lang: "Music" },
     ],
   },
@@ -194,7 +194,7 @@ export const WEEKLY_SCHEDULE: ScheduleDay[] = [
   },
 ];
 
-// ── PRESENTERS / TEAM (NEW — biggest gap from research) ───────────
+// ── PRESENTERS / TEAM (NEW, biggest gap from research) ───────────
 export type Presenter = {
   name: string;
   show: string;
@@ -219,7 +219,7 @@ export const PRESENTERS: Presenter[] = [
     name: "Thabo Mokoena",
     show: "Tech Talk",
     time: "Mon–Fri · 09:00",
-    bio: "Our resident tech translator. Thabo breaks down the apps, tools, and trends reshaping daily life in South Africa — from WhatsApp Business to AI — in language anyone can understand.",
+    bio: "Our resident tech translator. Thabo breaks down the apps, tools, and trends reshaping daily life in South Africa, from WhatsApp Business to AI, in language anyone can understand.",
     initials: "TM",
     accent: "from-[#4FE01A] to-[#35BD04]",
     tags: ["Technology", "Digital Skills", "AI"],
@@ -228,7 +228,7 @@ export const PRESENTERS: Presenter[] = [
     name: "Lerato Dube",
     show: "Lunch With The Nation",
     time: "Mon–Fri · 12:00",
-    bio: "News anchor and community interviewer. Lerato brings the voices of Klerksdorp, Matlosana, and the Southern District to the airwaves — leaders, entrepreneurs, and everyday heroes.",
+    bio: "News anchor and community interviewer. Lerato brings the voices of Klerksdorp, Matlosana, and the Southern District to the airwaves, leaders, entrepreneurs, and everyday heroes.",
     initials: "LD",
     accent: "from-[#F5C518] to-[#E6B800]",
     tags: ["News", "Interviews", "Community"],
@@ -246,7 +246,7 @@ export const PRESENTERS: Presenter[] = [
     name: "Naledi Sithole",
     show: "Digital Futures",
     time: "Mon–Fri · 18:00",
-    bio: "AI educator and digital futurist. Naledi runs Star FM's flagship Digital Literacy Initiative — teaching listeners how AI, automation, and the digital economy are reshaping jobs in North West Province.",
+    bio: "AI educator and digital futurist. Naledi runs Star FM's flagship Digital Literacy Initiative, teaching listeners how AI, automation, and the digital economy are reshaping jobs in North West Province.",
     initials: "NS",
     accent: "from-[#A8F0B0] to-[#35BD04]",
     tags: ["AI", "Education", "Future of Work"],
@@ -255,14 +255,14 @@ export const PRESENTERS: Presenter[] = [
     name: "Kabelo Modise",
     show: "AfroBeats & Chill",
     time: "Mon–Fri · 20:00",
-    bio: "DJ and cultural curator. Kabelo spins the Amapiano, AfroBeats, soul, and classic tracks that soundtrack the township's evenings — celebrating African music in all its forms.",
+    bio: "DJ and cultural curator. Kabelo spins the Amapiano, AfroBeats, soul, and classic tracks that soundtrack the township's evenings, celebrating African music in all its forms.",
     initials: "KM",
     accent: "from-[#E6B800] to-[#F5C518]",
     tags: ["Music", "Culture", "DJ"],
   },
 ];
 
-// ── NEWS ARTICLES (NEW — inspired by Capricorn FM / 5FM) ──────────
+// ── NEWS ARTICLES (NEW, inspired by Capricorn FM / 5FM) ──────────
 export type NewsArticle = {
   category: string;
   title: string;
@@ -277,7 +277,7 @@ export const NEWS: NewsArticle[] = [
     category: "Station News",
     title: "Star FM Launches Digital Literacy Initiative for North West Province",
     excerpt:
-      "Our flagship AI Literacy programme is now live — weekly on-air segments, free workshops, and digital skills training designed to bring every listener in Klerksdorp and the Southern District into the digital economy.",
+      "Our flagship AI Literacy programme is now live, weekly on-air segments, free workshops, and digital skills training designed to bring every listener in Klerksdorp and the Southern District into the digital economy.",
     date: "2026-08-04",
     readTime: "4 min read",
     featured: true,
@@ -286,7 +286,7 @@ export const NEWS: NewsArticle[] = [
     category: "Community",
     title: "Klerksdorp Matric Class 2026: Bursary Deadlines You Can't Miss",
     excerpt:
-      "A round-up of every major bursary closing this month — NSFAS, provincial funds, and private scholarships for North West Province matriculants heading to university next year.",
+      "A round-up of every major bursary closing this month, NSFAS, provincial funds, and private scholarships for North West Province matriculants heading to university next year.",
     date: "2026-08-02",
     readTime: "6 min read",
   },
@@ -302,7 +302,7 @@ export const NEWS: NewsArticle[] = [
     category: "Technology",
     title: "Free AI Tools Every South African Can Use Today",
     excerpt:
-      "From ChatGPT to Canva AI, here are the free tools that can help you write a CV, start a business, or learn a new skill — no laptop required, just your phone.",
+      "From ChatGPT to Canva AI, here are the free tools that can help you write a CV, start a business, or learn a new skill, no laptop required, just your phone.",
     date: "2026-07-28",
     readTime: "7 min read",
   },
@@ -310,7 +310,7 @@ export const NEWS: NewsArticle[] = [
     category: "Culture",
     title: "Amapiano to the World: The North West Sound Going Global",
     excerpt:
-      "How a genre born in the townships became a global phenomenon — and the local artists from Klerksdorp and Matlosana riding the wave.",
+      "How a genre born in the townships became a global phenomenon, and the local artists from Klerksdorp and Matlosana riding the wave.",
     date: "2026-07-25",
     readTime: "5 min read",
   },
@@ -346,7 +346,7 @@ export const PODCASTS: Podcast[] = [
     show: "Youth Hustle Hour",
     duration: "38 min",
     episode: "EP 08",
-    desc: "Meet the 24-year-old who turned a R500 spaza shop into a registered business with three employees — and how Star FM listeners can do it too.",
+    desc: "Meet the 24-year-old who turned a R500 spaza shop into a registered business with three employees, and how Star FM listeners can do it too.",
   },
   {
     title: "The State of Matlosana: Mayor's Quarterly Address",
@@ -360,7 +360,7 @@ export const PODCASTS: Podcast[] = [
     show: "AfroBeats & Chill",
     duration: "47 min",
     episode: "EP 06",
-    desc: "A deep dive into how North West Province shaped the Amapiano sound — featuring unreleased tracks from local producers.",
+    desc: "A deep dive into how North West Province shaped the Amapiano sound, featuring unreleased tracks from local producers.",
   },
 ];
 
@@ -369,17 +369,17 @@ export const DIGITAL_CARDS = [
   {
     icon: "robot",
     title: "AI Literacy Segments",
-    body: "Weekly on-air segments explaining what AI is, how it works, and how it's changing your daily life — in plain language, no jargon.",
+    body: "Weekly on-air segments explaining what AI is, how it works, and how it's changing your daily life, in plain language, no jargon.",
   },
   {
     icon: "phone",
     title: "Digital Skills Radio",
-    body: "From WhatsApp Business to mobile banking — practical digital skills your community can use today, demonstrated live on air.",
+    body: "From WhatsApp Business to mobile banking, practical digital skills your community can use today, demonstrated live on air.",
   },
   {
     icon: "globe",
     title: "Tech for Entrepreneurs",
-    body: "Helping township businesses go digital, reach more customers, and compete in a connected economy — step by step.",
+    body: "Helping township businesses go digital, reach more customers, and compete in a connected economy, step by step.",
   },
 ] as const;
 
@@ -388,12 +388,12 @@ export const COMMUNITY_CARDS = [
   {
     icon: "home",
     title: "Hyperlocal Voices",
-    body: "We platform local leaders, entrepreneurs, educators, and activists — giving a microphone to the people making real change in Klerksdorp.",
+    body: "We platform local leaders, entrepreneurs, educators, and activists, giving a microphone to the people making real change in Klerksdorp.",
   },
   {
     icon: "book",
     title: "Education First",
-    body: "School information, adult literacy, bursary alerts, and skills training — education content runs every single day on Star FM.",
+    body: "School information, adult literacy, bursary alerts, and skills training, education content runs every single day on Star FM.",
   },
   {
     icon: "briefcase",
@@ -408,12 +408,12 @@ export const COMMUNITY_CARDS = [
   {
     icon: "heart",
     title: "Social Cohesion",
-    body: "A place where all community members — regardless of background, age, or language — come to listen, learn, and belong.",
+    body: "A place where all community members, regardless of background, age, or language, come to listen, learn, and belong.",
   },
   {
     icon: "globe",
     title: "A New Model for Radio",
-    body: "Modern, digital-first, and fundable — a community radio model worth scaling across South Africa's township and rural communities.",
+    body: "Modern, digital-first, and fundable, a community radio model worth scaling across South Africa's township and rural communities.",
   },
 ] as const;
 
@@ -450,7 +450,7 @@ export const COMPETITIONS: Competition[] = [
   },
 ];
 
-// ── FREQUENCY / COVERAGE (NEW — inspired by SA FM frequency finder) ─
+// ── FREQUENCY / COVERAGE (NEW, inspired by SA FM frequency finder) ─
 export const COVERAGE_AREAS = [
   { town: "Klerksdorp", strength: 100, note: "Studio location" },
   { town: "Matlosana", strength: 95, note: "Strong signal" },

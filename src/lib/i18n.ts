@@ -1,4 +1,4 @@
-// Star FM i18n — English (EN), Setswana (TN), Sesotho (ST)
+// Star FM i18n, English (EN), Setswana (TN), Sesotho (ST)
 // North West Province is Setswana-dominant with significant Sesotho speakers.
 
 export type Lang = "en" | "tn" | "st";
@@ -20,17 +20,17 @@ export const I18N: Record<Lang, Dict> = {
     nav_news: "News",
     nav_digital: "Digital Literacy",
     nav_community: "Community",
-    nav_partners: "Partners",
+    nav_partners: "Get Involved",
     nav_contact: "Contact",
     btn_tune_in: "Tune In Live",
     btn_mission: "Our Mission",
     btn_listen_app: "Get the App",
-    hero_badge: "24/7 Live — Klerksdorp & North West Province",
+    hero_badge: "24/7 Live from Klerksdorp, North West Province",
     hero_h1a: "Brighter.",
     hero_h1b: "Smarter.",
     hero_h1c: "Community Radio.",
     hero_sub:
-      'Star FM 102.9 — "For The Brighter Side Of You." Broadcasting empowerment, digital literacy, and African excellence across Klerksdorp, the City of Matlosana, and the Southern District of North West Province.',
+      'Star FM 102.9. "For The Brighter Side Of You." We broadcast music, news, digital skills, and the African story across Klerksdorp, Matlosana, and the whole Dr Kenneth Kaunda District.',
     player_label: "Live Stream",
     on_air: "On Air",
     now_playing: "Now Playing",
@@ -41,19 +41,19 @@ export const I18N: Record<Lang, Dict> = {
     schedule_label: "Weekly Line-Up",
     schedule_title: "Seven Days of Community Radio.",
     schedule_body:
-      "From morning drive to weekend wind-down — your full weekly schedule on Star FM 102.9. Tap any day to see what's on air.",
+      "From morning drive to weekend wind-down. Your full weekly schedule on Star FM 102.9. Tap any day to see what is on air right now.",
     presenters_label: "Meet the Team",
     presenters_title: "Voices of the Community.",
     presenters_body:
-      "The people behind the microphone — presenters, producers, and community voices who make Star FM 102.9 the heartbeat of Klerksdorp.",
+      "The people behind the microphone. Presenters, producers, and community voices who make Star FM 102.9 the heartbeat of Klerksdorp.",
     shows_label: "Programming",
     shows_title: "Shows That Move People.",
     shows_body:
-      "Six daily shows designed to inform, empower, and entertain — from morning news to late-night AfroBeats.",
+      "Six daily shows built to inform, empower, and entertain. From morning news to late-night AfroBeats, we have something for everyone.",
     digital_label: "Digital Literacy Initiative",
     digital_title: "We Teach the Tools of Tomorrow.",
     digital_body:
-      "Star FM doesn't just broadcast — we educate. Dedicated programming, workshops, and on-air demonstrations bring AI awareness and digital skills to every listener in Klerksdorp and the Southern District.",
+      "Star FM does not just broadcast. We educate. Every week we bring AI awareness and digital skills to listeners across Klerksdorp, in plain language anyone can understand.",
     news_label: "Latest News",
     news_title: "Stories From the Southern District.",
     news_body:
@@ -61,11 +61,11 @@ export const I18N: Record<Lang, Dict> = {
     podcasts_label: "Catch Up",
     podcasts_title: "Missed a Show? Press Play.",
     podcasts_body:
-      "Full episodes of your favourite Star FM shows — available on demand, anytime, anywhere.",
+      "Missed a show? No problem. Catch full episodes of your favourite Star FM shows on demand, anytime, anywhere.",
     community_label: "The Mission",
     community_title: "Built For The Community.",
     community_body:
-      "Star FM 102.9 is not a corporate station. We are owned by, built for, and powered by the community of Klerksdorp and the Southern District. Every broadcast is an act of empowerment.",
+      "Star FM 102.9 is not a corporate station. We are owned by, built for, and powered by the people of Klerksdorp. Every broadcast is for you, by us, together.",
     competitions_label: "Win With Star FM",
     competitions_title: "Competitions & Community Giveaways.",
     competitions_body:
@@ -73,13 +73,13 @@ export const I18N: Record<Lang, Dict> = {
     funder_eye: "// For Funders & Partners",
     funder_title: "Invest in the Voice of the Community.",
     funder_body:
-      "Community radio reaches the people mainstream media ignores. Star FM 102.9 is building new digital infrastructure for Klerksdorp and North West Province — and we're looking for forward-thinking funders ready to make a measurable social impact.",
+      "Community radio reaches the people mainstream media forgets. Star FM 102.9 is building something new for Klerksdorp and we want partners who care about real impact, not just logos on a wall.",
     funder_btn1: "Request Investment Brief",
     funder_btn2: "Become a Sponsor",
-    contact_label: "Get Involved",
-    contact_title: "Let's Build Together.",
+    contact_label: "Say Hello",
+    contact_title: "Let's talk.",
     contact_body:
-      "Whether you're a listener, local business, community organisation, or funder — there's a place for you in the Star FM 102.9 ecosystem.",
+      "Got a question, a song request, a business idea, or just want to say sawubona? Drop us a message. We read every single one and we reply fast.",
     ci_loc: "Location",
     ci_stream: "Live Stream",
     ci_email: "Email",
@@ -97,7 +97,7 @@ export const I18N: Record<Lang, Dict> = {
     coverage_label: "Coverage Area",
     coverage_title: "Where to Tune In.",
     coverage_body:
-      "Star FM 102.9 MHz broadcasts across Klerksdorp and the surrounding towns of the City of Matlosana and Dr Kenneth Kaunda District.",
+      "Star FM 102.9 MHz reaches across Klerksdorp and the towns of Matlosana and the Dr Kenneth Kaunda District. If you can hear us, you are family.",
   },
   tn: {
     nav_home: "Tlhaga",
@@ -112,12 +112,12 @@ export const I18N: Record<Lang, Dict> = {
     btn_tune_in: "Reetsa E Tshela",
     btn_mission: "Maikaelelo a Rena",
     btn_listen_app: "Ngwaga ya App",
-    hero_badge: "24/7 E Tshela — Klerksdorp & North West Province",
+    hero_badge: "24/7 E Tshela, Klerksdorp & North West Province",
     hero_h1a: "Yo o Phatsimang.",
     hero_h1b: "Yo o Botlhale.",
     hero_h1c: "Sefapa sa Setšhaba.",
     hero_sub:
-      'Star FM 102.9 — "Karolo e Phatsimang ya Wena." Go tlhagisa kgakololo, botlhale jwa di-electronic, le botho jwa Aforika go ralala le Klerksdorp, Toropo ya Matlosana, le Kgaolo ya Borwa jwa North West Province.',
+      'Star FM 102.9, "Karolo e Phatsimang ya Wena." Go tlhagisa kgakololo, botlhale jwa di-electronic, le botho jwa Aforika go ralala le Klerksdorp, Toropo ya Matlosana, le Kgaolo ya Borwa jwa North West Province.',
     player_label: "E Tshela Jaanong",
     on_air: "E Tshela",
     now_playing: "E Bapala Jaanong",
@@ -128,19 +128,19 @@ export const I18N: Record<Lang, Dict> = {
     schedule_label: "Palo ya Beke",
     schedule_title: "Malatsi a Supa a Sefapa sa Setšhaba.",
     schedule_body:
-      "Go tloga ka poro ya motshegare go ya kwa wa phakela la bofelo — palelo ya gago e feletseng ya beke kwa Star FM 102.9.",
+      "Go tloga ka poro ya motshegare go ya kwa wa phakela la bofelo, palelo ya gago e feletseng ya beke kwa Star FM 102.9.",
     presenters_label: "Kopana le Setlhopha",
     presenters_title: "Dipuo tsa Setšhaba.",
     presenters_body:
-      "Batho ba ba leng kwa morago ga sefapa — baithaopi, babopi, le dipuo tsa setšhaba tse di dirang Star FM 102.9 e nne pelo ya Klerksdorp.",
+      "Batho ba ba leng kwa morago ga sefapa, baithaopi, babopi, le dipuo tsa setšhaba tse di dirang Star FM 102.9 e nne pelo ya Klerksdorp.",
     shows_label: "Mananeo",
     shows_title: "Mananeo a a Sutang Batho.",
     shows_body:
-      "Mananeo a mataro a letsatsi a a dirilweng go tlamela ka tshedimosetso, kgakololo le boitumelo — go tloga ka dikgang tsa phakela go ya kwa mminong wa bofelo.",
+      "Mananeo a mataro a letsatsi a a dirilweng go tlamela ka tshedimosetso, kgakololo le boitumelo, go tloga ka dikgang tsa phakela go ya kwa mminong wa bofelo.",
     digital_label: "Tiro ya Botlhale jwa Di-electronic",
     digital_title: "Re Rutisa Didirisiwa tsa Mašelaelwana.",
     digital_body:
-      "Star FM ga se fela go tlhagisa — re ruta. Mananeo a a tlhagisitsweng, dithuto tsa go dira, le dipontsho di dira gore botlhale jwa AI le bokgoni jwa di-electronic di fitlhe kwa go yo o mongwe le yo o mongwe kwa Klerksdorp.",
+      "Star FM ga se fela go tlhagisa, re ruta. Mananeo a a tlhagisitsweng, dithuto tsa go dira, le dipontsho di dira gore botlhale jwa AI le bokgoni jwa di-electronic di fitlhe kwa go yo o mongwe le yo o mongwe kwa Klerksdorp.",
     news_label: "Dikgang tsa Bosheng",
     news_title: "Dikgang go Tswa kwa Kgaolong ya Borwa.",
     news_body:
@@ -148,7 +148,7 @@ export const I18N: Record<Lang, Dict> = {
     podcasts_label: "Tshwara",
     podcasts_title: "O Lebilwe Mananeo? Tlhoma Tlhasedi.",
     podcasts_body:
-      "Dielkanyo tse di feletseng tsa mananeo a a ratwang thata — di teng fa o batla nako efe kapa efe.",
+      "Dielkanyo tse di feletseng tsa mananeo a a ratwang thata, di teng fa o batla nako efe kapa efe.",
     community_label: "Maikaelelo",
     community_title: "E Agilweng ka Setšhaba.",
     community_body:
@@ -166,7 +166,7 @@ export const I18N: Record<Lang, Dict> = {
     contact_label: "Nna Karolo",
     contact_title: "A re Ageng Smmoo.",
     contact_body:
-      "Go se na phoso fa o le setho sa setšhaba, kgwebo ya selegae, mokgatho wa setšhaba, kapa mošireletsi — go na le lefelo la gago kwa Star FM 102.9.",
+      "Go se na phoso fa o le setho sa setšhaba, kgwebo ya selegae, mokgatho wa setšhaba, kapa mošireletsi, go na le lefelo la gago kwa Star FM 102.9.",
     ci_loc: "Lefelo",
     ci_stream: "E Tshela Jaanong",
     ci_email: "Email",
@@ -199,12 +199,12 @@ export const I18N: Record<Lang, Dict> = {
     btn_tune_in: "Mamela E Phelang",
     btn_mission: "Maikemisetso wa Rena",
     btn_listen_app: "Ngwathola ya App",
-    hero_badge: "24/7 E Phelang — Klerksdorp & North West Province",
+    hero_badge: "24/7 E Phelang, Klerksdorp & North West Province",
     hero_h1a: "Ya hlakanang.",
     hero_h1b: "Ya botjhaba.",
     hero_h1c: "Seea-moya sa Setjhaba.",
     hero_sub:
-      'Star FM 102.9 — "Karolo e Hlakanang ya Wena." E phatlalatsa kgakololo, botjhaba ba di-electronic, le botho ba Aforika ho phaella Klerksdorp, Toropo ya Matlosana, le Kgaolo ya Borwa ya North West Province.',
+      'Star FM 102.9, "Karolo e Hlakanang ya Wena." E phatlalatsa kgakololo, botjhaba ba di-electronic, le botho ba Aforika ho phaella Klerksdorp, Toropo ya Matlosana, le Kgaolo ya Borwa ya North West Province.',
     player_label: "E Phelang",
     on_air: "E Phelang",
     now_playing: "E Bapala Joale",
@@ -215,19 +215,19 @@ export const I18N: Record<Lang, Dict> = {
     schedule_label: "Palo ya Beke",
     schedule_title: "Matsatsi a Supa a Seea-moya sa Setjhaba.",
     schedule_body:
-      "Ho tloha ho pontšo ya hoseng ho ya ho wa bofelong wa phedising — palelo ya hao e feletseng ya beke ho Star FM 102.9.",
+      "Ho tloha ho pontšo ya hoseng ho ya ho wa bofelong wa phedising, palelo ya hao e feletseng ya beke ho Star FM 102.9.",
     presenters_label: "Kopana le Setlhopha",
     presenters_title: "Dipuo tsa Setjhaba.",
     presenters_body:
-      "Batho ba dilemong ke ho morago ga seea-moya — baithuti, bahlangisi, le dipuo tsa setjhaba tse etsang hore Star FM 102.9 e be pelo ya Klerksdorp.",
+      "Batho ba dilemong ke ho morago ga seea-moya, baithuti, bahlangisi, le dipuo tsa setjhaba tse etsang hore Star FM 102.9 e be pelo ya Klerksdorp.",
     shows_label: "Mananeo",
     shows_title: "Mananeo a Futhumatsang Batho.",
     shows_body:
-      "Mananeo a tsheletseng a letsatsi a a bopilweng ho fana ka tlhahiso, kgakololo le thabo — ho tloha ho ditaba tsa hoseng ho ya ho mmino wa bofelong.",
+      "Mananeo a tsheletseng a letsatsi a a bopilweng ho fana ka tlhahiso, kgakololo le thabo, ho tloha ho ditaba tsa hoseng ho ya ho mmino wa bofelong.",
     digital_label: "Tiro ya Botjhaba ba Di-electronic",
     digital_title: "Re Rutisa Didirisiwa tsa Hosasa.",
     digital_body:
-      "Star FM ha se feela ho phatlalatsa — re ruta. Mananeo a a tlhampilweng, dithuto tsa ho etsa, le dipontšo di etsa hore botjhaba ba AI le bokgoni ba di-electronic di fihle ho yo mongwe le yo mongwe Klerksdorp.",
+      "Star FM ha se feela ho phatlalatsa, re ruta. Mananeo a a tlhampilweng, dithuto tsa ho etsa, le dipontšo di etsa hore botjhaba ba AI le bokgoni ba di-electronic di fihle ho yo mongwe le yo mongwe Klerksdorp.",
     news_label: "Ditaba tsa Bosheng",
     news_title: "Ditaba ho Tswa Kgaolong ya Borwa.",
     news_body:
@@ -235,7 +235,7 @@ export const I18N: Record<Lang, Dict> = {
     podcasts_label: "Tshwara",
     podcasts_title: "O Lebile Mananeo? Tlhoma Papadi.",
     podcasts_body:
-      "Dikarolo tse feletseng tsa mananeo a a ratwang haholo — di teng ha o batla nako efe kapa efe.",
+      "Dikarolo tse feletseng tsa mananeo a a ratwang haholo, di teng ha o batla nako efe kapa efe.",
     community_label: "Maikemisetso",
     community_title: "E Aholweng ka Setjhaba.",
     community_body:
@@ -253,7 +253,7 @@ export const I18N: Record<Lang, Dict> = {
     contact_label: "Kenya Letšatši",
     contact_title: "A re Aheng Smmoo.",
     contact_body:
-      "Ha ho na phoso haeba o setho sa setjhaba, khoebo ya selegae, mokgatlo wa setjhaba, kapa mošireletsi — ho na le lefelo la hao Star FM 102.9.",
+      "Ha ho na phoso haeba o setho sa setjhaba, khoebo ya selegae, mokgatlo wa setjhaba, kapa mošireletsi, ho na le lefelo la hao Star FM 102.9.",
     ci_loc: "Lefelo",
     ci_stream: "E Phelang",
     ci_email: "Email",

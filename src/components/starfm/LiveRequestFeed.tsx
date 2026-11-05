@@ -52,7 +52,7 @@ export function LiveRequestFeed() {
       await loadData();
     };
     if (mounted) void fetch();
-    // Refresh every 30 seconds — this is the "live" feed
+    // Refresh every 30 seconds, this is the "live" feed
     const interval = setInterval(loadData, 30000);
     return () => {
       mounted = false;
@@ -95,7 +95,7 @@ export function LiveRequestFeed() {
             marginBottom: 32,
           }}
         >
-          Real-time requests from listeners across Klerksdorp, Matlosana, and beyond — feeding
+          Real-time requests from listeners across Klerksdorp, Matlosana, and beyond, feeding
           directly into the studio. When a presenter plays a request, the status updates here.
           {!IS_LIVE && (
             <span
@@ -185,7 +185,7 @@ export function LiveRequestFeed() {
                 fontSize: "0.88rem",
               }}
             >
-              No requests yet — be the first! Submit a request above.
+              No requests yet, be the first! Submit a request above.
             </div>
           )}
           {requests.map((req, i) => {

@@ -9,18 +9,8 @@ const FOOTER_COLS = [
       { label: "Show Schedule", href: "#schedule" },
       { label: "Presenters", href: "#presenters" },
       { label: "Listen Live", href: STATION.streamUrl, external: true },
-      { label: "Advertise", href: "#contact" },
-      { label: "Become a Presenter", href: "#contact" },
-    ],
-  },
-  {
-    title: "Digital",
-    links: [
-      { label: "AI Literacy", href: "#digital" },
-      { label: "Tech for Business", href: "#digital" },
-      { label: "Digital Skills", href: "#digital" },
-      { label: "Submit Music", href: "#contact" },
-      { label: "Partner With Us", href: "#contact" },
+      { label: "Top 10 Voting", href: "#top10" },
+      { label: "Send a Request", href: "#request" },
     ],
   },
   {
@@ -30,7 +20,17 @@ const FOOTER_COLS = [
       { label: "Coverage Area", href: "#coverage" },
       { label: "News", href: "#news" },
       { label: "Competitions", href: "#competitions" },
-      { label: "For Funders", href: "#funders" },
+      { label: "Get Involved", href: "#get-involved" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "HustlePortal", href: "https://hustleportal.online", external: true },
+      { label: "AI Literacy", href: "#digital" },
+      { label: "Digital Skills", href: "#digital" },
+      { label: "Submit Music", href: "#contact" },
+      { label: "Advertise With Us", href: "#get-involved" },
     ],
   },
 ];
@@ -133,7 +133,7 @@ export function Footer() {
                 marginTop: 14,
               }}
             >
-              Broadcasting empowerment, digital literacy and African excellence from Klerksdorp. 102.9 MHz — your community, your voice, your future.
+              Broadcasting music, news, and digital skills from Klerksdorp to the whole Dr Kenneth Kaunda District. 102.9 MHz. Your community, your voice, your station.
             </p>
 
             {/* Socials */}
@@ -314,19 +314,31 @@ export function Footer() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 8,
+            gap: 10,
             paddingTop: 28,
             borderTop: "1px solid var(--border)",
             fontSize: "0.76rem",
-            color: "rgba(168,240,176,0.25)",
+            color: "rgba(168,240,176,0.4)",
             textAlign: "center",
           }}
           className="md:flex-row md:justify-between md:text-left"
         >
-          <div>© 2026 Star FM 102.9 Community Radio · {STATION.domain}</div>
-          <div>Broadcasting from Klerksdorp, North West Province</div>
           <div>
-            Powered by{" "}
+            © {new Date().getFullYear()} Star FM 102.9 Community Radio
+          </div>
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}>
+            <a
+              href="https://hustleportal.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--star-green)", textDecoration: "none" }}
+            >
+              Community partner: HustlePortal
+            </a>
+            <span>Broadcasting from Klerksdorp, North West</span>
+          </div>
+          <div>
+            Built by{" "}
             <a
               href="https://businesshustle.co.za"
               target="_blank"

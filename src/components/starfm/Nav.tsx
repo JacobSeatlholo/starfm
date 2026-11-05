@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: "#news", key: "nav_news" },
   { href: "#digital", key: "nav_digital" },
   { href: "#community", key: "nav_community" },
+  { href: "#get-involved", key: "nav_partners" },
   { href: "#contact", key: "nav_contact" },
 ] as const;
 

@@ -31,12 +31,12 @@ function Icon({ name }: { name: string }) {
 }
 
 const CARDS = [
-  { icon: "home", title: "Hyperlocal Voices", body: "We platform local leaders, entrepreneurs, educators, and activists — giving a microphone to the people making real change in Klerksdorp." },
-  { icon: "book", title: "Education First", body: "School information, adult literacy, bursary alerts, and skills training — education content runs every single day on Star FM." },
+  { icon: "home", title: "Hyperlocal Voices", body: "We platform local leaders, entrepreneurs, educators, and activists, giving a microphone to the people making real change in Klerksdorp." },
+  { icon: "book", title: "Education First", body: "School information, adult literacy, bursary alerts, and skills training, education content runs every single day on Star FM." },
   { icon: "briefcase", title: "Economic Empowerment", body: "Tender opportunities, SMME resources, government grants and business tips that help listeners build real wealth for their families." },
   { icon: "music", title: "Culture & Identity", body: "Local music, indigenous languages, cultural heritage and stories that remind our community who they are and where they come from." },
-  { icon: "heart", title: "Social Cohesion", body: "A place where all community members — regardless of background, age, or language — come to listen, learn, and belong." },
-  { icon: "globe", title: "A New Model for Radio", body: "Modern, digital-first, and fundable — a community radio model worth scaling across South Africa's township and rural communities." },
+  { icon: "heart", title: "Social Cohesion", body: "A place where all community members, regardless of background, age, or language, come to listen, learn, and belong." },
+  { icon: "globe", title: "A New Model for Radio", body: "Modern, digital-first, and fundable, a community radio model worth scaling across South Africa's township and rural communities." },
 ];
 
 export function Community() {

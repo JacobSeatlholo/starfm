@@ -40,7 +40,7 @@ export function StickyPlayer() {
         justifyContent: "space-between",
       }}
     >
-      {/* Left — station info */}
+      {/* Left, station info */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
         <div
           style={{
@@ -89,7 +89,7 @@ export function StickyPlayer() {
         </div>
       </div>
 
-      {/* Center — equalizer (desktop) */}
+      {/* Center, equalizer (desktop) */}
       <div className="hidden md:flex" style={{ alignItems: "flex-end", gap: 3, height: 24 }}>
         {[0.5, 0.8, 0.4, 1, 0.7, 0.3, 0.9, 0.6, 0.85].map((h, i) => (
           <div
@@ -100,7 +100,7 @@ export function StickyPlayer() {
         ))}
       </div>
 
-      {/* Right — play button */}
+      {/* Right, play button */}
       <a
         href={STATION.streamUrl}
         target="_blank"

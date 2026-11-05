@@ -95,7 +95,7 @@ export function LiveRequestForm() {
           }}
         >
           Want to hear a song, send a shoutout, or raise a topic? Your request lands in front of
-          the presenter in seconds — live in the studio queue.
+          the presenter in seconds, live in the studio queue.
           {!IS_LIVE && (
             <span
               style={{
@@ -346,7 +346,7 @@ export function LiveRequestForm() {
               {status === "sending" && "📡 Sending to studio..."}
               {status === "sent" &&
                 `✓ Sent! ${queuePos ? `You're #${queuePos} in the queue` : ""}`}
-              {status === "error" && "✗ Something went wrong — try again"}
+              {status === "error" && "✗ Something went wrong, try again"}
             </button>
           </form>
 

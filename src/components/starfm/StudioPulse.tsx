@@ -12,7 +12,7 @@ import {
 } from "@/lib/starfm-api";
 
 /**
- * StudioPulse — a compact "live status" widget showing:
+ * StudioPulse, a compact "live status" widget showing:
  * - Current show + presenter (auto-computed from schedule)
  * - Current track (if presenter has set one)
  * - Next up show
@@ -155,7 +155,7 @@ export function StudioPulse() {
               </>
             ) : (
               <div style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-                Off-air — check the schedule below
+                Off-air, check the schedule below
               </div>
             )}
           </div>
@@ -311,7 +311,7 @@ export function StudioPulse() {
             className="live-dot"
             style={{ background: isLive ? "var(--star-green)" : "var(--star-gold)" }}
           />
-          {isLive ? "Connected to Star FM studio operations" : "Demo mode — connect Google Sheet for live data"}
+          {isLive ? "Connected to Star FM studio operations" : "Demo mode, connect Google Sheet for live data"}
         </div>
       </div>
     </section>

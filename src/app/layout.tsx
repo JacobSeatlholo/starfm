@@ -26,9 +26,9 @@ const syneMono = Syne_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://starfm-two.vercel.app"),
-  title: "Star FM 102.9 | For The Brighter Side Of You — Klerksdorp Community Radio",
+  title: "Star FM 102.9 | For The Brighter Side Of You",
   description:
-    "Star FM 102.9 MHz — Klerksdorp's community radio station. Live streaming 24/7 across the Southern District of North West Province. Digital literacy, community voices, and African excellence.",
+    "Star FM 102.9 MHz, Klerksdorp's community radio station. Live 24/7 across the Dr Kenneth Kaunda District. Music, news, digital skills, and the African story.",
   keywords: [
     "Star FM",
     "Star FM 102.9",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Star FM 102.9 | For The Brighter Side Of You",
     description:
-      "Klerksdorp's community radio station — live 24/7 across North West Province.",
+      "Klerksdorp's community radio station. Live 24/7. For The Brighter Side Of You.",
   },
 };
 

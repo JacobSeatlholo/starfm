@@ -1,5 +1,5 @@
 /**
- * Star FM API client — talks to the Google Apps Script backend.
+ * Star FM API client, talks to the Google Apps Script backend.
  *
  * If NEXT_PUBLIC_APPS_SCRIPT_URL is not set, falls back to demo data
  * so the site still looks fully functional for previews/demos.
@@ -119,7 +119,7 @@ function coerceDate(val: unknown): string {
   return String(val);
 }
 
-// Coerce a NowPlaying response — handle date-formatted times and votes
+// Coerce a NowPlaying response, handle date-formatted times and votes
 function coerceNowPlaying(data: NowPlaying): NowPlaying {
   const coerceShow = (show: ShowSlot | null): ShowSlot | null => {
     if (!show) return null;
@@ -192,7 +192,7 @@ async function apiPost<T>(
   body: Record<string, unknown>
 ): Promise<{ ok: boolean; data?: T; error?: string }> {
   if (!IS_LIVE) {
-    // Demo mode — simulate success after a short delay
+    // Demo mode, simulate success after a short delay
     await new Promise((r) => setTimeout(r, 800));
     return { ok: true, data: { ok: true, demo: true } as unknown as T };
   }

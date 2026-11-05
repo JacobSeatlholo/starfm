@@ -31,17 +31,17 @@ const CARDS = [
   {
     icon: "robot",
     title: "AI Literacy Segments",
-    body: "Weekly on-air segments explaining what AI is, how it works, and how it's changing your daily life — in plain language, no jargon.",
+    body: "Weekly on-air segments explaining what AI is, how it works, and how it's changing your daily life, in plain language, no jargon.",
   },
   {
     icon: "phone",
     title: "Digital Skills Radio",
-    body: "From WhatsApp Business to mobile banking — practical digital skills your community can use today, demonstrated live on air.",
+    body: "From WhatsApp Business to mobile banking, practical digital skills your community can use today, demonstrated live on air.",
   },
   {
     icon: "globe",
     title: "Tech for Entrepreneurs",
-    body: "Helping township businesses go digital, reach more customers, and compete in a connected economy — step by step.",
+    body: "Helping township businesses go digital, reach more customers, and compete in a connected economy, step by step.",
   },
 ];
 
@@ -173,7 +173,7 @@ export function Digital() {
             </div>
           </div>
 
-          {/* Right — Terminal + now live card */}
+          {/* Right, Terminal + now live card */}
           <Reveal
             delay={1}
             style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}
@@ -208,7 +208,7 @@ export function Digital() {
                     letterSpacing: "0.08em",
                   }}
                 >
-                  star-fm-digital — live session
+                  star-fm-digital, live session
                 </div>
               </div>
               <div style={{ padding: "22px", fontSize: "0.78rem", lineHeight: 2.1 }}>
@@ -219,7 +219,7 @@ export function Digital() {
                 <div style={{ color: "rgba(168,240,176,0.55)", paddingLeft: 18 }}>
                   AI = programs that learn from data to make
                   <br />
-                  &nbsp;&nbsp;&nbsp;decisions — like a smart assistant.
+                  &nbsp;&nbsp;&nbsp;decisions, like a smart assistant.
                 </div>
                 <br />
                 <div style={{ display: "flex", gap: 10 }}>

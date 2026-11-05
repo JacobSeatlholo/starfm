@@ -117,7 +117,7 @@ export function Top10Voting() {
             marginBottom: 32,
           }}
         >
-          Vote once per song per week. The chart resets every Monday at 00:00 — your votes decide what
+          Vote once per song per week. The chart resets every Monday at 00:00, your votes decide what
           gets played. Live vote counts update automatically.
           {!IS_LIVE && (
             <span

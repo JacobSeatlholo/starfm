@@ -10,7 +10,7 @@ import { STATION } from "@/lib/starfm-data";
  * 1. Try the Famcast embed iframe (current approach)
  * 2. If it doesn't load within 4s, show a fallback "Listen" button
  *    that opens the stream in a new tab
- * 3. The iframe stays mounted — if Famcast recovers, the player appears
+ * 3. The iframe stays mounted, if Famcast recovers, the player appears
  *
  * This fixes the "grey box" issue seen on the deployed wine build.
  */

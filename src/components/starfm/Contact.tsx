@@ -53,7 +53,7 @@ export function Contact() {
           }}
           className="md:flex-row md:gap-16"
         >
-          {/* Left — info */}
+          {/* Left, info */}
           <div style={{ flex: 1 }}>
             <Reveal
               as="h2"
@@ -185,7 +185,7 @@ export function Contact() {
             </a>
           </div>
 
-          {/* Right — form */}
+          {/* Right, form */}
           <Reveal
             delay={1}
             style={{ flex: 1 }}
@@ -340,7 +340,7 @@ export function Contact() {
                   onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
                 />
               </div>
-              {/* Honeypot field — hidden from humans, catches bots */}
+              {/* Honeypot field, hidden from humans, catches bots */}
               <input
                 type="text"
                 name="website"
@@ -381,7 +381,7 @@ export function Contact() {
                 {status === "idle" && t("f_send") + " →"}
                 {status === "sending" && "Sending to studio..."}
                 {status === "sent" && "✓ Message received! We'll be in touch."}
-                {status === "error" && "✗ Could not send — try again"}
+                {status === "error" && "✗ Could not send, try again"}
               </button>
             </form>
           </Reveal>

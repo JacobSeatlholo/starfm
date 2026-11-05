@@ -19,7 +19,7 @@ import { Podcasts } from "@/components/starfm/Podcasts";
 import { Community } from "@/components/starfm/Community";
 import { Competitions } from "@/components/starfm/Competitions";
 import { Coverage } from "@/components/starfm/Coverage";
-import { Funders } from "@/components/starfm/Funders";
+import { GetInvolved } from "@/components/starfm/GetInvolved";
 import { Contact } from "@/components/starfm/Contact";
 import { Footer } from "@/components/starfm/Footer";
 import { StickyPlayer } from "@/components/starfm/StickyPlayer";
@@ -38,10 +38,10 @@ export default function Home() {
         <CustomCursor />
         <Nav />
         <main style={{ flex: 1 }}>
-          {/* Hero — logo, headline, CTAs, live stream */}
+          {/* Hero, logo, headline, CTAs, live stream */}
           <Hero />
 
-          {/* Studio Pulse — live "Now On Air" + track + stats (auto-refreshing) */}
+          {/* Studio Pulse, live "Now On Air" + track + stats (auto-refreshing) */}
           <StudioPulse />
 
           {/* Scrolling brand ticker */}
@@ -62,13 +62,13 @@ export default function Home() {
           {/* Digital Literacy Initiative + terminal */}
           <Digital />
 
-          {/* Top 10 Voting — live vote counts, one-vote-per-session */}
+          {/* Top 10 Voting, live vote counts, one-vote-per-session */}
           <Top10Voting />
 
-          {/* Live Request Form — song/topic requests → studio sheet */}
+          {/* Live Request Form, song/topic requests → studio sheet */}
           <LiveRequestForm />
 
-          {/* Live Request Feed — public feed of recent requests with status */}
+          {/* Live Request Feed, public feed of recent requests with status */}
           <LiveRequestFeed />
 
           {/* News articles */}
@@ -86,15 +86,15 @@ export default function Home() {
           {/* Coverage map + frequency */}
           <Coverage />
 
-          {/* Funders / investors */}
-          <Funders />
+          {/* Get Involved (pathways + community toolkit with HustlePortal) */}
+          <GetInvolved />
 
           {/* Contact form (submits leads to sheet) */}
           <Contact />
         </main>
         <Footer />
         <StickyPlayer />
-        {/* Spacer for sticky player — ensures footer content isn't hidden */}
+        {/* Spacer for sticky player, ensures footer content isn't hidden */}
         <div style={{ height: 80 }} aria-hidden="true" />
       </div>
     </LangProvider>
