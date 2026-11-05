@@ -69,18 +69,18 @@ function setup() {
     'day', 'startTime', 'endTime', 'showName', 'presenter', 'genre', 'language', 'notes'
   ]]);
   sched.getRange(2, 1, 7, 8).setValues([
-    ['Monday',    '06:00', '09:00', 'Morning Drive',          'Jacob Seatlholo', 'Talk',      'EN/TN', 'News, traffic, school updates'],
+    ['Monday',    '06:00', '09:00', 'Morning Drive',          'Hlangagane Malungane', 'Talk',      'EN/TN', 'News, traffic, school updates'],
     ['Monday',    '09:00', '12:00', 'Tech Talk',               'Thabo Mokoena',   'Tech',      'EN',     'Digital tips, app guides'],
     ['Monday',    '12:00', '15:00', 'Lunch With The Nation',   'Lerato Dube',     'News',      'EN/TN/ST','Community voices, interviews'],
     ['Monday',    '15:00', '18:00', 'Youth Hustle Hour',       'Sipho Nkosi',     'Business',  'EN',     'Bursaries, tenders, hustle'],
     ['Monday',    '18:00', '20:00', 'Digital Futures',         'Naledi Sithole',  'AI/Tech',   'EN',     'AI literacy, future of work'],
     ['Monday',    '20:00', '23:00', 'AfroBeats & Chill',       'Kabelo Modise',   'Music',     'Music',  'Amapiano, AfroBeats, soul'],
-    ['Tuesday',   '06:00', '09:00', 'Morning Drive',           'Jacob Seatlholo', 'Talk',      'EN/TN', ''],
+    ['Tuesday',   '06:00', '09:00', 'Morning Drive',           'Hlangagane Malungane', 'Talk',      'EN/TN', ''],
   ]);
   // Duplicate Monday-Friday pattern for Tue-Fri
   const days = ['Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const baseShows = [
-    ['06:00', '09:00', 'Morning Drive',          'Jacob Seatlholo', 'Talk',      'EN/TN', ''],
+    ['06:00', '09:00', 'Morning Drive',          'Hlangagane Malungane', 'Talk',      'EN/TN', ''],
     ['09:00', '12:00', 'Tech Talk',               'Thabo Mokoena',   'Tech',      'EN',     ''],
     ['12:00', '15:00', 'Lunch With The Nation',   'Lerato Dube',     'News',      'EN/TN/ST',''],
     ['15:00', '18:00', 'Youth Hustle Hour',       'Sipho Nkosi',     'Business',  'EN',     ''],
@@ -98,7 +98,7 @@ function setup() {
   });
   // Saturday
   const satShows = [
-    ['Saturday', '07:00', '10:00', 'Weekend Breakfast',    'Jacob Seatlholo', 'Talk',    'EN/TN', ''],
+    ['Saturday', '07:00', '10:00', 'Weekend Breakfast',    'Hlangagane Malungane', 'Talk',    'EN/TN', ''],
     ['Saturday', '10:00', '13:00', 'Community Voices',     'Lerato Dube',     'Talk',    'EN/TN/ST','Outside broadcast'],
     ['Saturday', '13:00', '16:00', 'Saturday Sports Desk', 'Sipho Nkosi',     'Sports',  'EN',    'Local + PSL'],
     ['Saturday', '16:00', '19:00', 'The Hive — Youth Show','Naledi Sithole',  'Youth',   'EN',    ''],
@@ -111,7 +111,7 @@ function setup() {
   // Sunday
   const sunShows = [
     ['Sunday', '07:00', '10:00', 'Sunday Gospel',         'Lerato Dube',     'Gospel',  'EN/TN/ST',''],
-    ['Sunday', '10:00', '13:00', 'The Sunday Reflection', 'Jacob Seatlholo', 'Talk',    'EN/TN', ''],
+    ['Sunday', '10:00', '13:00', 'The Sunday Reflection', 'Hlangagane Malungane', 'Talk',    'EN/TN', ''],
     ['Sunday', '13:00', '16:00', 'Classic AfroBeats',     'Kabelo Modise',   'Music',   'Music', ''],
     ['Sunday', '16:00', '19:00', 'Community Requests',    'Thabo Mokoena',   'Music',   'EN/TN/ST','Listener requests'],
     ['Sunday', '19:00', '23:00', 'Wind-Down Sundays',     'Naledi Sithole',  'Music',   'Music', ''],
@@ -173,7 +173,7 @@ function setup() {
     'name', 'show', 'time', 'bio', 'initials', 'tags', 'photoUrl'
   ]]);
   pres.getRange(2, 1, 6, 7).setValues([
-    ['Jacob Seatlholo', 'Morning Drive',        'Mon–Fri · 06:00', 'Founder and lead voice of Star FM 102.9. Jacob wakes up Klerksdorp every morning with the stories, music, and energy the community needs. Digital literacy advocate.', 'JS', 'Founder;Morning Drive;Digital Literacy', ''],
+    ['Hlangagane Malungane', 'Morning Drive',        'Mon–Fri · 06:00', 'Founder and lead voice of Star FM 102.9. Hlangagane wakes up Klerksdorp every morning with the stories, music, and energy the community needs. Digital literacy advocate.', 'HM', 'Founder;Morning Drive;Digital Literacy', ''],
     ['Thabo Mokoena',   'Tech Talk',             'Mon–Fri · 09:00', 'Our resident tech translator. Thabo breaks down apps, tools, and trends reshaping daily life in South Africa.', 'TM', 'Technology;Digital Skills;AI', ''],
     ['Lerato Dube',     'Lunch With The Nation', 'Mon–Fri · 12:00', 'News anchor and community interviewer. Lerato brings the voices of Klerksdorp, Matlosana, and the Southern District to the airwaves.', 'LD', 'News;Interviews;Community', ''],
     ['Sipho Nkosi',     'Youth Hustle Hour',     'Mon–Fri · 15:00', 'Entrepreneur, mentor, and voice of the next generation. Covers bursaries, tenders, side hustles, and the mindset young South Africans need.', 'SN', 'Youth;Business;Entrepreneurship', ''],

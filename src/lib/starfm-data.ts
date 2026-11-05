@@ -207,11 +207,11 @@ export type Presenter = {
 
 export const PRESENTERS: Presenter[] = [
   {
-    name: "Jacob Seatlholo",
+    name: "Hlangagane Malungane",
     show: "Morning Drive",
     time: "Mon–Fri · 06:00",
-    bio: "Founder and lead voice of Star FM 102.9. Jacob wakes up Klerksdorp every morning with the stories, music, and energy the community needs to start the day right. A digital literacy advocate and community media pioneer.",
-    initials: "JS",
+    bio: "Founder and lead voice of Star FM 102.9. Hlangagane wakes up Klerksdorp every morning with the stories, music, and energy the community needs to start the day right. A digital literacy advocate and community media pioneer.",
+    initials: "HM",
     accent: "from-[#35BD04] to-[#2A9A03]",
     tags: ["Founder", "Morning Drive", "Digital Literacy"],
   },
