@@ -2,6 +2,7 @@
 
 import { useLang } from "./LangContext";
 import { STATION } from "@/lib/starfm-data";
+import { StreamPlayer } from "./StreamPlayer";
 
 export function Hero() {
   const { t } = useLang();
@@ -320,21 +321,7 @@ export function Hero() {
             {t("on_air")}
           </div>
         </div>
-        <div
-          style={{
-            borderRadius: 12,
-            overflow: "hidden",
-            background: "#000",
-          }}
-        >
-          <iframe
-            src={STATION.streamUrl}
-            scrolling="no"
-            title="Star FM 102.9 live stream"
-            style={{ width: "100%", height: 76, border: "none", display: "block" }}
-            loading="lazy"
-          />
-        </div>
+        <StreamPlayer />
         <div
           style={{
             display: "flex",

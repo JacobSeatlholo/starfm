@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { STATION } from "@/lib/starfm-data";
+import { StreamPlayer } from "./StreamPlayer";
 
 export function StickyPlayer() {
   const [visible, setVisible] = useState(false);
@@ -148,13 +149,7 @@ export function StickyPlayer() {
             padding: "12px 16px",
           }}
         >
-          <iframe
-            src={STATION.streamUrl}
-            scrolling="no"
-            title="Star FM 102.9 live stream"
-            style={{ width: "100%", height: 76, border: "none", display: "block" }}
-            loading="lazy"
-          />
+          <StreamPlayer compact />
         </div>
       )}
     </div>
