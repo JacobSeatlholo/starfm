@@ -4,18 +4,34 @@ import { useState } from "react";
 import { useLang } from "./LangContext";
 import { Reveal } from "./Reveal";
 import { STATION, CONTACT_REASONS } from "@/lib/starfm-data";
+import { submitLead, IS_LIVE } from "@/lib/starfm-api";
 
 export function Contact() {
   const { t } = useLang();
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
-    // Simulate sending — in production this would POST to /api/contact
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus("sent");
-    setTimeout(() => setStatus("idle"), 4000);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      type: String(formData.get("type") || "Listener"),
+      message: String(formData.get("message") || ""),
+      website: String(formData.get("website") || ""), // honeypot
+      source: "website",
+    };
+    const result = await submitLead(data);
+    if (result.ok) {
+      setStatus("sent");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 5000);
+    } else {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   return (
@@ -192,6 +208,7 @@ export function Contact() {
                 </label>
                 <input
                   id="f-name"
+                  name="name"
                   type="text"
                   required
                   placeholder={t("f_name_ph")}
@@ -227,6 +244,7 @@ export function Contact() {
                 </label>
                 <input
                   id="f-email"
+                  name="email"
                   type="email"
                   required
                   placeholder={t("f_email_ph")}
@@ -262,6 +280,7 @@ export function Contact() {
                 </label>
                 <select
                   id="f-type"
+                  name="type"
                   style={{
                     background: "var(--panel)",
                     border: "1px solid var(--border)",
@@ -298,6 +317,7 @@ export function Contact() {
                 </label>
                 <textarea
                   id="f-msg"
+                  name="message"
                   required
                   rows={4}
                   placeholder={t("f_msg_ph")}
@@ -320,6 +340,21 @@ export function Contact() {
                   onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
                 />
               </div>
+              {/* Honeypot field — hidden from humans, catches bots */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  left: -9999,
+                  width: 1,
+                  height: 1,
+                  opacity: 0,
+                }}
+              />
               <button
                 type="submit"
                 disabled={status !== "idle"}
@@ -344,8 +379,9 @@ export function Contact() {
                 }}
               >
                 {status === "idle" && t("f_send") + " →"}
-                {status === "sending" && "Sending..."}
-                {status === "sent" && "✓ Message Sent!"}
+                {status === "sending" && "Sending to studio..."}
+                {status === "sent" && "✓ Message received! We'll be in touch."}
+                {status === "error" && "✗ Could not send — try again"}
               </button>
             </form>
           </Reveal>

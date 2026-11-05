@@ -1,16 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLang } from "./LangContext";
 import { Reveal } from "./Reveal";
 import { WEEKLY_SCHEDULE, SHOWS } from "@/lib/starfm-data";
+import { getNowPlaying, IS_LIVE, DEMO_NOW_PLAYING, type NowPlaying } from "@/lib/starfm-api";
 
-// Compute current show based on time
-function getCurrentShow() {
+const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const DAY_SHORT: Record<string, string> = {
+  Monday: "Mon",
+  Tuesday: "Tue",
+  Wednesday: "Wed",
+  Thursday: "Thu",
+  Friday: "Fri",
+  Saturday: "Sat",
+  Sunday: "Sun",
+};
+
+// Compute current show based on local time (fallback when API not available)
+function getCurrentShowFallback() {
   const now = new Date();
   const hour = now.getHours();
-  const day = now.getDay(); // 0 = Sunday
-  // Weekday schedule (Mon-Fri)
+  const day = now.getDay();
   if (day >= 1 && day <= 5) {
     for (let i = SHOWS.length - 1; i >= 0; i--) {
       const showHour = parseInt(SHOWS[i].time.split(":")[0]);
@@ -18,14 +29,46 @@ function getCurrentShow() {
     }
     return SHOWS[SHOWS.length - 1];
   }
-  // Weekend — return a default
   return SHOWS[0];
 }
 
 export function Schedule() {
   const { t } = useLang();
   const [activeDay, setActiveDay] = useState(0);
-  const currentShow = getCurrentShow();
+  const [nowPlaying, setNowPlaying] = useState<NowPlaying | null>(null);
+  const fallbackShow = getCurrentShowFallback();
+
+  const loadData = useCallback(async () => {
+    const np = await getNowPlaying();
+    if (np) setNowPlaying(np);
+    // In demo mode, nowPlaying stays null and we use the fallback show
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetch = async () => {
+      await loadData();
+    };
+    if (mounted) void fetch();
+    const interval = setInterval(loadData, 60000); // refresh every 60s
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
+  }, [loadData]);
+
+  // Use API data if available, otherwise fallback
+  const currentShow = nowPlaying?.currentShow
+    ? {
+        time: nowPlaying.currentShow.startTime,
+        name: nowPlaying.currentShow.showName,
+        host: nowPlaying.currentShow.presenter,
+        tag: nowPlaying.currentShow.genre,
+        desc: nowPlaying.currentShow.notes || "",
+      }
+    : fallbackShow;
+
+  const nextShow = nowPlaying?.nextShow;
 
   return (
     <section
@@ -62,6 +105,27 @@ export function Schedule() {
           }}
         >
           {t("schedule_body")}
+          {IS_LIVE && (
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                marginLeft: 8,
+                padding: "3px 10px",
+                background: "rgba(53,189,4,0.1)",
+                border: "1px solid rgba(53,189,4,0.2)",
+                borderRadius: 100,
+                fontSize: "0.62rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--star-green)",
+              }}
+            >
+              <span className="live-dot" style={{ background: "var(--star-green)" }} />
+              Live
+            </span>
+          )}
         </Reveal>
 
         {/* Now on air card */}
@@ -88,7 +152,8 @@ export function Schedule() {
               left: 0,
               right: 0,
               height: 2,
-              background: "linear-gradient(90deg, var(--star-green), var(--star-gold), var(--star-green))",
+              background:
+                "linear-gradient(90deg, var(--star-green), var(--star-gold), var(--star-green))",
             }}
           />
           <div
@@ -121,7 +186,7 @@ export function Schedule() {
                 marginBottom: 4,
               }}
             >
-              {currentShow.time} · TODAY
+              {currentShow.time} · {nowPlaying?.day || DAYS[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1]}
             </div>
             <div
               style={{
@@ -147,6 +212,40 @@ export function Schedule() {
           </div>
         </Reveal>
 
+        {/* Coming up next preview (auto-computed) */}
+        {nextShow && (
+          <Reveal
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "10px 20px",
+              marginBottom: 24,
+              fontSize: "0.78rem",
+              color: "var(--muted)",
+              background: "var(--panel)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--r)",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-syne-mono), monospace",
+                fontSize: "0.62rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--star-green)",
+                fontWeight: 700,
+              }}
+            >
+              ▶ Coming Up
+            </span>
+            <span style={{ color: "var(--white)", fontWeight: 500 }}>{nextShow.showName}</span>
+            <span>· {nextShow.presenter}</span>
+            <span>· at {nextShow.startTime}</span>
+          </Reveal>
+        )}
+
         {/* Day tabs */}
         <Reveal
           style={{
@@ -158,9 +257,9 @@ export function Schedule() {
             scrollbarWidth: "thin",
           }}
         >
-          {WEEKLY_SCHEDULE.map((day, i) => (
+          {(IS_LIVE && nowPlaying ? DAYS : DAYS).map((day, i) => (
             <button
-              key={day.day}
+              key={day}
               onClick={() => setActiveDay(i)}
               style={{
                 background: activeDay === i ? "var(--star-green)" : "var(--panel)",
@@ -179,7 +278,7 @@ export function Schedule() {
                 flexShrink: 0,
               }}
             >
-              {day.short}
+              {DAY_SHORT[day] || day.slice(0, 3)}
             </button>
           ))}
         </Reveal>
