@@ -75,6 +75,93 @@ export type StudioStats = {
   serverTime: string;
 };
 
+// ── Data coercion helpers ───────────────────────────────────────────
+// The Apps Script may return dates as ISO strings (e.g. "1899-12-30T04:30:00.000Z")
+// when the sheet auto-formats time columns. These helpers convert them back to
+// clean "HH:mm" strings or numbers on the client side.
+
+function coerceTime(val: unknown): string {
+  if (typeof val === "string") {
+    // If it's a date string like "1899-12-30T04:30:00.000Z", extract HH:mm
+    const dateMatch = val.match(/T(\d{2}):(\d{2})/);
+    if (dateMatch) return `${dateMatch[1]}:${dateMatch[2]}`;
+    return val;
+  }
+  if (val instanceof Date) {
+    return val.toTimeString().slice(0, 5);
+  }
+  return String(val);
+}
+
+function coerceNumber(val: unknown): number {
+  if (typeof val === "number") return val;
+  if (typeof val === "string") {
+    // Extract number from date strings like "1900-02-14T22:30:00.000Z"
+    if (val.includes("T")) {
+      const d = new Date(val);
+      // Google Sheets stores numbers as days since 1899-12-30
+      // Votes like 47 would be stored as 47 days = 1900-02-15
+      const epoch = new Date("1899-12-30T00:00:00.000Z");
+      const diffDays = (d.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24);
+      return Math.round(diffDays);
+    }
+    return Number(val) || 0;
+  }
+  return 0;
+}
+
+function coerceDate(val: unknown): string {
+  if (val instanceof Date) return val.toISOString();
+  return String(val);
+}
+
+// Coerce a NowPlaying response — handle date-formatted times and votes
+function coerceNowPlaying(data: NowPlaying): NowPlaying {
+  const coerceShow = (show: ShowSlot | null): ShowSlot | null => {
+    if (!show) return null;
+    return {
+      ...show,
+      startTime: coerceTime(show.startTime),
+      endTime: coerceTime(show.endTime),
+    };
+  };
+  return {
+    ...data,
+    currentShow: coerceShow(data.currentShow),
+    nextShow: coerceShow(data.nextShow),
+    track: data.track
+      ? {
+          ...data.track,
+          duration: data.track.duration?.includes("T")
+            ? new Date(data.track.duration).toTimeString().slice(3, 8)
+            : data.track.duration,
+          setAt: coerceDate(data.track.setAt),
+        }
+      : null,
+    serverTime: coerceDate(data.serverTime),
+  };
+}
+
+function coerceTop10(data: { top10: Top10Song[]; weekOf: string }): {
+  top10: Top10Song[];
+  weekOf: string;
+} {
+  return {
+    top10: data.top10.map((s) => ({
+      ...s,
+      votes: coerceNumber(s.votes),
+      rank: coerceNumber(s.rank),
+      lastVotedAt: coerceDate(s.lastVotedAt),
+      weekOf: s.weekOf?.includes("T")
+        ? new Date(s.weekOf).toISOString().split("T")[0]
+        : s.weekOf,
+    })),
+    weekOf: data.weekOf?.includes("T")
+      ? new Date(data.weekOf).toISOString().split("T")[0]
+      : data.weekOf,
+  };
+}
+
 // ── Fetch helper ────────────────────────────────────────────────────
 async function apiGet<T>(action: string, params?: Record<string, string>): Promise<T | null> {
   if (!IS_LIVE) return null;
@@ -125,11 +212,13 @@ async function apiPost<T>(
 // ── Public API ──────────────────────────────────────────────────────
 
 export async function getNowPlaying(): Promise<NowPlaying | null> {
-  return apiGet<NowPlaying>("now-playing");
+  const data = await apiGet<NowPlaying>("now-playing");
+  return data ? coerceNowPlaying(data) : null;
 }
 
 export async function getTop10(): Promise<{ top10: Top10Song[]; weekOf: string } | null> {
-  return apiGet<{ top10: Top10Song[]; weekOf: string }>("top10");
+  const data = await apiGet<{ top10: Top10Song[]; weekOf: string }>("top10");
+  return data ? coerceTop10(data) : null;
 }
 
 export async function getRecentRequests(

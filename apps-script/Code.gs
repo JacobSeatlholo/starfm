@@ -206,16 +206,42 @@ function setup() {
   ]);
   stats.setFrozenRows(1);
 
-  // Format all date columns
-  [TABS.REQUESTS, TABS.TOP10, TABS.NOW_PLAYING, TABS.STATS, TABS.LEADS].forEach(tab => {
+  // Format only the date/timestamp columns (col 1 in most tabs, col 5 in Top10)
+  // IMPORTANT: do NOT apply date format to numeric columns (votes) or text columns (startTime, endTime)
+  const dateFormats = {
+    [TABS.REQUESTS]:   [1, 8],          // timestamp (col 1), playedAt (col 8)
+    [TABS.TOP10]:      [5],              // lastVotedAt (col 5) — votes is col 4, keep as number!
+    [TABS.NOW_PLAYING]: [1],             // timestamp (col 1)
+    [TABS.STATS]:      [3],              // updatedAt (col 3)
+    [TABS.LEADS]:      [1],              // timestamp (col 1)
+  };
+  Object.entries(dateFormats).forEach(([tab, cols]) => {
     const sheet = ss.getSheetByName(tab);
     if (sheet) {
       const lastRow = sheet.getLastRow();
       if (lastRow > 1) {
-        sheet.getRange(2, 1, lastRow - 1, sheet.getLastColumn()).setNumberFormat('yyyy-mm-dd hh:mm:ss');
+        cols.forEach(col => {
+          sheet.getRange(2, col, lastRow - 1, 1).setNumberFormat('yyyy-mm-dd hh:mm:ss');
+        });
       }
     }
   });
+
+  // Ensure votes column (Top10 col 4) is formatted as number, not date
+  const top10Sheet = ss.getSheetByName(TABS.TOP10);
+  if (top10Sheet && top10Sheet.getLastRow() > 1) {
+    top10Sheet.getRange(2, 4, top10Sheet.getLastRow() - 1, 1).setNumberFormat('0');
+  }
+  // Ensure schedule times are plain text (not dates)
+  const schedSheet = ss.getSheetByName(TABS.SCHEDULE);
+  if (schedSheet && schedSheet.getLastRow() > 1) {
+    schedSheet.getRange(2, 2, schedSheet.getLastRow() - 1, 2).setNumberFormat('@'); // startTime, endTime as text
+  }
+  // Ensure Stats values are numbers
+  const statsSheet = ss.getSheetByName(TABS.STATS);
+  if (statsSheet && statsSheet.getLastRow() > 1) {
+    statsSheet.getRange(2, 2, statsSheet.getLastRow() - 1, 1).setNumberFormat('0');
+  }
 
   // Set up weekly trigger for Top 10 reset
   const triggers = ScriptApp.getProjectTriggers();
@@ -329,7 +355,14 @@ function getSchedule() {
   const headers = data[0];
   const rows = data.slice(1).map(r => {
     const obj = {};
-    headers.forEach((h, i) => { obj[h] = r[i]; });
+    headers.forEach((h, i) => {
+      let val = r[i];
+      // Convert dates to strings, keep times as plain strings
+      if (val instanceof Date) {
+        val = Utilities.formatDate(val, Session.getScriptTimeZone(), 'HH:mm');
+      }
+      obj[h] = val;
+    });
     return obj;
   });
   // Group by day
@@ -360,15 +393,34 @@ function getNowPlaying() {
     const startIdx = headers.indexOf('startTime');
     const endIdx = headers.indexOf('endTime');
     const rows = data.slice(1).filter(r => r[dayIdx] === dayName);
+    // Helper to convert a cell value to a time string "HH:mm"
+    function toTimeStr(v) {
+      if (v instanceof Date) return Utilities.formatDate(v, tz, 'HH:mm');
+      return String(v);
+    }
     // Sort by start time
-    rows.sort((a, b) => String(a[startIdx]).localeCompare(String(b[startIdx])));
+    rows.sort((a, b) => toTimeStr(a[startIdx]).localeCompare(toTimeStr(b[startIdx])));
     for (let i = 0; i < rows.length; i++) {
       const r = rows[i];
       const obj = {};
-      headers.forEach((h, j) => { obj[h] = r[j]; });
+      headers.forEach((h, j) => {
+        let val = r[j];
+        // Convert times to "HH:mm" strings
+        if (h === 'startTime' || h === 'endTime') {
+          val = toTimeStr(val);
+        }
+        obj[h] = val;
+      });
       if (String(obj.startTime) <= hhmm && String(obj.endTime) > hhmm) {
         currentShow = obj;
-        nextShow = rows[i + 1] ? rowToObj(headers, rows[i + 1]) : null;
+        if (rows[i + 1]) {
+          nextShow = {};
+          headers.forEach((h, j) => {
+            let val = rows[i + 1][j];
+            if (h === 'startTime' || h === 'endTime') val = toTimeStr(val);
+            nextShow[h] = val;
+          });
+        }
         break;
       }
       if (String(obj.startTime) > hhmm && !nextShow) {
@@ -382,17 +434,21 @@ function getNowPlaying() {
   const npSheet = ss.getSheetByName(TABS.NOW_PLAYING);
   if (npSheet && npSheet.getLastRow() > 1) {
     const lastRow = npSheet.getRange(npSheet.getLastRow(), 1, 1, npSheet.getLastColumn()).getValues()[0];
-    // Only show if set within last 10 minutes
     const trackTime = new Date(lastRow[0]);
     const ageMin = (now - trackTime) / 60000;
-    if (ageMin < 600) { // 10 hours for now-playing track (presenters may forget to update)
+    if (ageMin < 600) { // 10 hours
+      // Duration might be a date if sheet auto-formatted it
+      let duration = lastRow[5];
+      if (duration instanceof Date) {
+        duration = Utilities.formatDate(duration, tz, 'm:ss');
+      }
       track = {
         trackName: lastRow[1],
         artist: lastRow[2],
         presenter: lastRow[3],
         show: lastRow[4],
-        duration: lastRow[5],
-        setAt: lastRow[0],
+        duration: String(duration),
+        setAt: trackTime.toISOString(),
       };
     }
   }
@@ -401,7 +457,7 @@ function getNowPlaying() {
     currentShow,
     nextShow,
     track,
-    serverTime: now,
+    serverTime: now.toISOString(),
     day: dayName,
     time: hhmm,
   };
@@ -423,7 +479,17 @@ function getTop10() {
   const headers = data[0];
   const rows = data.slice(1).map(r => {
     const obj = {};
-    headers.forEach((h, i) => { obj[h] = r[i]; });
+    headers.forEach((h, i) => {
+      let val = r[i];
+      // Coerce votes to number
+      if (h === 'votes') val = Number(val) || 0;
+      // Coerce rank to number
+      if (h === 'rank') val = Number(val) || 0;
+      // Format dates as ISO strings
+      if (h === 'lastVotedAt' && val instanceof Date) val = val.toISOString();
+      if (h === 'weekOf' && val instanceof Date) val = Utilities.formatDate(val, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+      obj[h] = val;
+    });
     return obj;
   });
   // Re-sort by votes desc
@@ -447,7 +513,12 @@ function getRecentRequests(limit) {
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   const rows = data.reverse().map(r => {
     const obj = {};
-    headers.forEach((h, i) => { obj[h] = r[i]; });
+    headers.forEach((h, i) => {
+      let val = r[i];
+      // Convert dates to ISO strings
+      if (val instanceof Date) val = val.toISOString();
+      obj[h] = val;
+    });
     return obj;
   });
   return { requests: rows, total: lastRow - 1 };
@@ -463,11 +534,15 @@ function getPresenters() {
   const headers = data[0];
   const rows = data.slice(1).map(r => {
     const obj = {};
-    headers.forEach((h, i) => { obj[h] = r[i]; });
+    headers.forEach((h, i) => {
+      let val = r[i];
+      if (val instanceof Date) val = val.toISOString();
+      obj[h] = val;
+    });
     if (obj.tags) obj.tags = String(obj.tags).split(';').filter(Boolean);
     return obj;
   });
-  return { presenters: rows, updatedAt: new Date() };
+  return { presenters: rows, updatedAt: new Date().toISOString() };
 }
 
 // ════════════════════════════════════════════════════════════════════
@@ -499,7 +574,7 @@ function getStats() {
   }
   const leads = ss.getSheetByName(TABS.LEADS);
   if (leads) stats.totalLeads = Math.max(0, leads.getLastRow() - 1);
-  stats.serverTime = new Date();
+  stats.serverTime = new Date().toISOString();
   return stats;
 }
 
